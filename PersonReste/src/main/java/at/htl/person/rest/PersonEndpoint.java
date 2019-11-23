@@ -4,11 +4,9 @@ import at.htl.person.model.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 
@@ -47,11 +45,18 @@ public class PersonEndpoint {
                 .header("Chiara", "Christoph")
                 .entity(person).build();
     }
+
+
     //Paht nich nötig weil nur eine psot methode exisitiert
     @POST
+    @Path("x")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createPerson(@Context HttpHeaders httpHeaders, Person person){
+    @Transactional
+    public Response createPerson2(final @Context UriInfo uriInfo, Person person){
         Person p = em.merge(person);
-        return Response.accepted().header("operation","object create").build();
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .path("/" + p.getId())
+                .build();
+        return Response.created(uri).header("operation","object create").build();
     }
 }
