@@ -67,7 +67,7 @@ public class PersonEndpoint {
         } else {
             System.out.println("I am a Object");
         }
-        return null;
+        return Response.ok().build();
     }
 
     //Paht nich nötig weil nur eine psot methode exisitiert
