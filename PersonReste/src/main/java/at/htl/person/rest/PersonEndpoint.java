@@ -2,12 +2,16 @@ package at.htl.person.rest;
 
 import at.htl.person.model.Person;
 
+import javax.json.JsonArray;
+import javax.json.JsonValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Path("person")
@@ -46,6 +50,25 @@ public class PersonEndpoint {
                 .entity(person).build();
     }
 
+
+    public Response createPerson(final @Context UriInfo uriInfo, JsonValue jsonValue){
+
+        if(jsonValue.getValueType() == JsonValue.ValueType.ARRAY){
+            JsonArray jsonArray = jsonValue.asJsonArray();
+            for (JsonValue value : jsonArray){
+                System.out.println(value.toString());
+                String name = value.asJsonObject().getString("name");
+                System.out.println("Name: " + name);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+                LocalDate dateOfBirth = LocalDate.parse(value.asJsonObject().getString("dob"), dtf);
+                System.out.println("DayOfBirth: " + dateOfBirth);
+                em.merge(new Person(name,dateOfBirth));
+            }
+        } else {
+            System.out.println("I am a Object");
+        }
+        return null;
+    }
 
     //Paht nich nötig weil nur eine psot methode exisitiert
     @POST
