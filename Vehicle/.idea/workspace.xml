@@ -6,14 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vehicle-st/src/main/java/at/htl/vehicle/rest/VehicleEndpointIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vehicle-st/src/main/java/at/htl/vehicle/rest/VehicleEndpointIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/vehicle/rest/VehicleEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/vehicle/rest/VehicleEndpoint.java" afterDir="false" />
-    </list>
+    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -70,6 +70,7 @@ public class VehicleEndpointIT {
         JsonObject dedicatedVehicle = this.target
                 .path("43")
                 .request(MediaType.APPLICATION_JSON)
+                .get(JsonObject.class);
         assertThat(dedicatedVehicle.getString("brand"), containsString("42"));
         assertThat(dedicatedVehicle.getString("brand"), equalTo("Opel 42"));
 
