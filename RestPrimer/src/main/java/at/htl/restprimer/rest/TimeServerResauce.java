@@ -11,6 +11,8 @@ public class TimeServerResauce {
 
     @GET
     public String time() {
-        return "Time: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd. MMMM yyyy, hh:mm:ss"));
+        return "Time: " + LocalDateTime
+                .now()
+                .format(DateTimeFormatter.ofPattern("dd. MMMM yyyy, hh:mm:ss"));
     }
 }
