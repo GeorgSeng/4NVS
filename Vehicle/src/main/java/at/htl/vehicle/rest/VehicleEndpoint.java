@@ -1,15 +1,14 @@
 package at.htl.vehicle.rest;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 @Path("vehicle")
-@Produces(MediaType.APPLICATION_XML)
+//@Produces(MediaType.APPLICATION_XML)
 public class VehicleEndpoint {
 
     @GET
@@ -19,11 +18,21 @@ public class VehicleEndpoint {
     }
 
     @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Vehicle> findAll() {
         List<Vehicle> all = new ArrayList<>();
         all.add(find(422));
         return all;
     }
 
+    @DELETE
+    @Path("{id}")
+    public void delete(@PathParam("id") long id){
+        System.out.println("deleted = " + id);
+    }
 
+    @POST
+    public void save(Vehicle vehicle) {
+        System.out.println("Vehicle =  " + vehicle);
+    }
 }

@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d038273-0617-47ba-8fd5-2ad1fcb80f77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../RestPrimer-st/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,8 +158,16 @@
       <workItem from="1570024022305" duration="493000" />
       <workItem from="1574345818042" duration="163000" />
       <workItem from="1574543349907" duration="634000" />
-      <workItem from="1574595955370" duration="51000" />
+      <workItem from="1574595955370" duration="165000" />
     </task>
+    <task id="LOCAL-00001" summary="Fix bug in some Methods">
+      <created>1574596075982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574596075982</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,5 +185,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix bug in some Methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in some Methods" />
   </component>
 </project>
