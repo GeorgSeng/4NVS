@@ -11,7 +11,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -55,5 +55,28 @@ public class VehicleEndpointIT {
         assertThat(vehicle.getString("type"), is("Commodore"));
     }
 
+    @Test
+    public void Crud(){
+        Response response = this.target.request(MediaType.APPLICATION_JSON).get();
+        assertThat(response.getStatus(), is(200));
+        JsonArray payload = response.readEntity(JsonArray.class);
+        System.out.println("payload =  " + payload);
 
+        JsonObject vehicle = payload.getJsonObject(0);
+        assertThat(vehicle.getString("brand"), is("Opel 42"));
+        assertThat(vehicle.getString("type"), is("Commodore"));
+
+        //Get with id
+        JsonObject dedicatedVehicle = this.target
+                .path("43")
+                .request(MediaType.APPLICATION_JSON)
+        assertThat(dedicatedVehicle.getString("brand"), containsString("42"));
+        assertThat(dedicatedVehicle.getString("brand"), equalTo("Opel 42"));
+
+        Response deleteResponse = this.target
+                .path("42")
+                .request(MediaType.APPLICATION_JSON)
+                .delete();
+        assertThat(deleteResponse.getStatus(), is(Response.Status.OK));
+    }
 }
