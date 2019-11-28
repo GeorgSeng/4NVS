@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="" />
+    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,8 @@
       <workItem from="1573662431331" duration="599000" />
       <workItem from="1573730305557" duration="1319000" />
       <workItem from="1574349982887" duration="1264000" />
-      <workItem from="1574598358917" duration="2326000" />
+      <workItem from="1574598358917" duration="2330000" />
+      <workItem from="1574946295773" duration="11000" />
     </task>
     <servers />
   </component>

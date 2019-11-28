@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vehicle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vehicle/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +41,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -86,6 +88,7 @@
       <workItem from="1570020321023" duration="2545000" />
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
+      <workItem from="1574946403980" duration="19000" />
     </task>
     <servers />
   </component>
