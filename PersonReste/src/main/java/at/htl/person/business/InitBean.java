@@ -36,6 +36,7 @@ public class InitBean {
         em.persist(new Person("Susi", LocalDate.of(2001, Month.SEPTEMBER, 3)));
         em.persist(new Person("Mimi", LocalDate.of(2001, Month.MAY, 31)));
 
+
         URL url = Thread.currentThread().getContextClassLoader()
                 .getResource("got.csv");
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8)) {
