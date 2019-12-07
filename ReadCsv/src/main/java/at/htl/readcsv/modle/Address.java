@@ -1,16 +1,13 @@
 package at.htl.readcsv.modle;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "addresse")
 public class Address {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
     private String street;
     private String city;

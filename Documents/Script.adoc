@@ -2,15 +2,14 @@
 
 // Metadata
 :author: GeorgSEng
-:email: 
 :date: 2019-12-07
 :revision:  1.0
 // Settings
-:source-highlighter: coderay
+//:source-highlighter: coderay
 //:icons: font
-//:sectnums:    // Nummerierung der Überschriften / section numbering
+:sectnums:    // Nummerierung der Überschriften / section numbering
 // Refs:
-:imagesdir: images
+:imagesdir: /home/georg/Documents/4NVS/Documents/images
 //:sourcedir-code: src/main/java/at/htl/jdbcprimer
 //:sourcedir-test: src/test/java/at/htl/jdbcprimer
 :toc:
@@ -23,6 +22,7 @@ Version: {revision}
 
 Create *Maven* Project with Intellij.
 For Example:
+[source, xml]
 ----
     <groupId>at.htl</groupId>
     <artifactId>PersonRest</artifactId>
@@ -50,15 +50,15 @@ The *resources folder* which is also a subfolder of the project's root directory
 .Rest Config File
 [source, java]
 ----
-package at.htl.vehicle.rest;
+    package at.htl.vehicle.rest;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+    import javax.ws.rs.ApplicationPath;
+    import javax.ws.rs.core.Application;
 
-@ApplicationPath("api")
-public class RestConfig extends Application {
+    @ApplicationPath("api")
+    public class RestConfig extends Application {
 
-}
+    }
 ----
 
 
@@ -67,53 +67,53 @@ For xml we have to declare the entity as:
 
 [source, Java]
 ----
-import javax.xml.bind.annotation.XmlRootElement;
+    import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-public class Vehicle {}
+    @XmlRootElement
+    public class Vehicle {}
 ----
 
 === Pom
 .Pom.xml
 [source, XML]
 ----
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
 
-    <groupId>at.htl</groupId>
-    <artifactId>vehicle</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+        <groupId>at.htl</groupId>
+        <artifactId>vehicle</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <packaging>war</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>8.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>8.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>2.3.2</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+        <properties>
+            <maven.compiler.source>11</maven.compiler.source>
+            <maven.compiler.target>11</maven.compiler.target>
+        </properties>
 
-    <build>
-        <finalName>vehicle</finalName>
-    </build>
+        <build>
+            <finalName>vehicle</finalName>
+        </build>
 
 
-</project>
+    </project>
 ----
 
 
@@ -124,54 +124,83 @@ public class Vehicle {}
 ----
 ###
 
-POST http://localhost:8080/person/api/person
-Content-Type: application/json
+    POST http://localhost:8080/person/api/person
+    Content-Type: application/json
 
-[
-{
-  "dob": "2001-10-07",
-  "name": "Chiara"
-},
-  {
-  "dob": "2002-03-23",
-  "name": "Christoph"
-}
-]
+    [
+    {
+    "dob": "2001-10-07",
+    "name": "Chiara"
+    },
+    {
+    "dob": "2002-03-23",
+    "name": "Christoph"
+    }
+    ]
 
-###
+    ###
 
-GET http://localhost:8080/person/api/person/demo
-Accept: application/xml
+    GET http://localhost:8080/person/api/person/demo
+    Accept: application/xml
 
-###
+    ###
 
-GET http://localhost:8080/person/api/person?name=Susi
+    GET http://localhost:8080/person/api/person?name=Susi
+----
+
+
+=== Read data from csv
+https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/
+
+----
+    private void init(
+        @Observes
+        @Initialized(ApplicationScoped.class) Object object) {
+        readCsv(FILE_NAME);
+    }
+
+    private void readCsv(String fileName) {
+        URL url = Thread.currentThread().getContextClassLoader()
+                .getResource(fileName);
+        try (Stream<String> stream = Files.lines(Paths.get(url.getPath())
+                , StandardCharsets.UTF_8)) {
+            stream
+                    .skip(1)
+                    .map(line -> line.split(";"))
+                    .map(elem -> new Person(elem[0], elem[1], elem[2]))
+                    //.forEach(System.out::println);
+                    .forEach(em::merge);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 ----
 
 == JPA
+JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.
 
 === Entity
 .Example Person
 [source, Java]
 ----
-package at.htl.person.model;
-import javax.persistence.*;
+    package at.htl.person.model;
+    import javax.persistence.*;
 
-@Entity
-//@Entity(name = "Person")
-public class Person {
-    @Transient
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    @Entity
+    //@Entity(name = "Person")
+    public class Person {
+        @Transient
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "customer_name")
-    private String name;
-}
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Column(name = "customer_name")
+        private String name;
+    }
 ----
 
 
-IMPORTANT: import javax.persistence.*;
+*import javax.persistence.**;
 
 .Annotations:
 |===
@@ -230,7 +259,7 @@ a|
 @OneToMany(mappedBy="bestellung", cascade = CascadeType.Persist, orphanRemoval=true)
 private List<Bestellungsposition> bestellungspositionListe;
 ----
-| delete dependent children, when the parent is going to be deleted (child-entites are orphans (=Waisen) then)
+| delete dependent children, when the parent is going to be    deleted (child-entites are orphans (=Waisen) then)
 
 a|
 [source, Java]
@@ -244,6 +273,24 @@ private Bestellung bestellung;
 a|
 [source, Java]
 ----
+/*  Person */
+@ManyToOne()
+@JoinColumns({
+    @JoinColumn(name = "Address_No"),
+    @JoinColumn(name = "ssn")
+})
+private Address address;
+
+/* Address */
+@OneToMany(mappedBy = "id.person", cascade = CascadeType.PERSIST)
+private List<Address> addresses = new ArrayList<>();
+----
+| when address has a composition key
+
+a|
+[source, Java]
+----
+
 /*  Person */
 @OneToOne
 @JoinColumn(unique = true)
@@ -261,9 +308,133 @@ private Address address;
 
 |===
 
-== CRUD
+=== Named Query
 
+.Example for Queries
+[source, java]
+----
+    @Entity
+    @NamedQueries({
+            @NamedQuery(
+                    name = "Person.findAll",
+                    query = "select p from Person p"
+            ),
+            @NamedQuery(
+                    name = "Person.findByName",
+                    query = "select p from Person p where p.name = :NAME"
+            )
+    })
+----
+
+.Rest Example for using a NamedQuery
+[source, java]
+----
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Person findByName(@QueryParam("name") String name) {
+        return em
+        .createNamedQuery("Person.findByName",Person.class)
+        .setParameter("NAME", name)
+        .getSingleResult();
+    }
+----
+=== Enitiy Manager
+
+[source, java]
+----
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("my−persistence−unit");
+    EntityManager em = emf.createEntityManager();
+
+    em.getTransaction().begin();
+    // perform insert/update/delete/query
+    em.getTransaction().commit(); 
+    // or em.getTransaction().rollback();
+    em.close();
+----
+== CRUD
+* Create: persist entity
+----
+    em.persist(person);
+----
+* Read: find entity by id
+----
+    Person person = em.find(Person.class, "1234010190");
+----
+* Update: update entity fields
+----
+    Person person = em.find(Person.class, "1234010190");
+    person.setName("Jane Doe");
+    // optional: other operations
+    em.merge();
+    //em.getTransaction().commit(); 
+    // executes update for the name of the person
+----
+* Delete: remove entity
+----
+    Person person = em.find(Person.class, "1234010190");
+    em.remove(person);
+    // optional: other operations
+    em.getTransaction().commit(); 
+    // executes delete for the person
+----
+
+//<<< //page brake
 == REST
+
+.Example for a Endpoint
+[source, java]
+----
+    import javax.annotation.PostConstruct;
+    import javax.json.*;
+    import javax.persistence.*;
+    import javax.transaction.Transactional;
+    import javax.ws.rs.*;
+    import javax.ws.rs.core.*;
+    import java.net.URI;
+    import java.time.LocalDate;
+    import java.time.format.DateTimeFormatter;
+    import java.util.List;
+
+    @Path("person")
+    public class PersonEndpoint {
+
+        public PersonEndpoint() {
+        }
+
+        @PersistenceContext
+        EntityManager em;
+
+        @GET
+        @Produces({
+                MediaType.APPLICATION_JSON,
+                MediaType.APPLICATION_XML
+        })
+        public List<Person> findAll() {
+            return em
+                    .createNamedQuery("Person.findAll", Person.class)
+                    .getResultList();
+        }
+
+        @POST
+        @Consumes(MediaType.APPLICATION_JSON)
+        @Transactional
+        public Response createPerson(
+                final @Context UriInfo uriInfo,
+                JsonValue jsonValue) {
+
+            if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
+                JsonArray jsonArray = jsonValue.asJsonArray();
+                for (JsonValue value : jsonArray) {
+                    String name = value.asJsonObject().getString("name");
+                    ...
+                    p = em.merge(p);
+                }
+            } else {
+                System.out.println("Ich bin ein Object");
+            }
+            return Response.ok().build();
+        }
+----
 
 == Lambda
 

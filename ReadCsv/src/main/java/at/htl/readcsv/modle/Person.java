@@ -1,10 +1,12 @@
 package at.htl.readcsv.modle;
 
-import javax.persistence.Entity;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String city;
