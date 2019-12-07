@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../demoTest101/requests/requests.html" afterDir="false" />
-    </list>
+    <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
