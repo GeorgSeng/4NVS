@@ -1,3 +1,4 @@
+/*
 package at.htl.readcsv.modle;
 
 import javax.persistence.*;
@@ -55,3 +56,4 @@ public class Address {
 
     //endregion
 }
+*/

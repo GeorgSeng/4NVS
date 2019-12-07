@@ -36,10 +36,12 @@ public class InitBean {
                     .skip(1)
                     .map(line -> line.split(";"))
                     .map(elem -> new Person(elem[0], elem[1], elem[2]))
-                    //.forEach(System.out::println);
-                    .forEach(em::merge);
+                    .forEach(System.out::println);
+                    //.forEach(em::merge);
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            //em.getTransaction().commit();
         }
     }
 }
