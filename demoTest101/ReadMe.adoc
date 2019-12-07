@@ -1,0 +1,2 @@
+== Project Goal:
+=== It should be a representation of a Music Store
