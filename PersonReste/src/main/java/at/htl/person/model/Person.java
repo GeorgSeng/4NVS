@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@Entity
+@Entity()
 @NamedQueries({
         @NamedQuery(
                 name = "Person.findAll",
@@ -24,6 +24,7 @@ public class Person {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column()
     private String name;
     private LocalDate dob;
 

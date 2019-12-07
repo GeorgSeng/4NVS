@@ -17,3 +17,17 @@
 ### Documents
 
 Cheatsheet for the technology taught in the lesson.
+
+
+#### Ressourcen:
+
+#### adoc:
+https://github.com/htl-leonding-college/asciidoctor/blob/master/README.adoc
+
+https://powerman.name/doc/asciidoc
+
+#### md
+https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
+
+#### lesson
+https://github.com/htl-leonding/1920-4bhif-nvs

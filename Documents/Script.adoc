@@ -7,17 +7,120 @@
 :revision:  1.0
 // Settings
 :source-highlighter: coderay
-:icons: font
+//:icons: font
 //:sectnums:    // Nummerierung der Überschriften / section numbering
 // Refs:
-//:imagesdir: images
+:imagesdir: images
 //:sourcedir-code: src/main/java/at/htl/jdbcprimer
 //:sourcedir-test: src/test/java/at/htl/jdbcprimer
 :toc:
  
 Version: {revision}
 
+== General
+
+=== Create Project
+
+Create *Maven* Project with Intellij.
+For Example:
+----
+    <groupId>at.htl</groupId>
+    <artifactId>PersonRest</artifactId>
+----
+
+=== Project Structure
+
+image::Project_Structure.png[]
+
+The source code is usually in 3 subfolders of the main folder *at.htl.project_Name* Folder. The subfolders are *business, model, rest*.
+
+In the *business folder* is the *InitBean.java* which 
+contains the init method for the Application server.
+
+In the *model folder* are the *Entities*.
+
+In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
+
+For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subfolder of the project's root directory.
+
+The *resources folder* which is also a subfolder of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
+
 == JPA
+
+=== Entity
+.Example Person
+[source, Java]
+----
+package at.htl.person.model;
+import javax.persistence.*;
+
+@Entity
+//@Entity(name = "Person")
+public class Person {
+    @Transient
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "customer_name")
+    private String name;
+}
+----
+
+
+IMPORTANT: import javax.persistence.*;
+
+.Annotations:
+|===
+|Annotation | Description
+
+a|
+[source, Java]
+----
+@Entity
+----
+| makes a class a entity
+
+a|
+[source, Java]
+----
+@Entity(name = "Person")
+----
+| defines the table name of the entity
+
+a|
+[source, Java]
+----
+@Id
+----
+| defines the Pk of a table entity
+
+a|
+[source, Java]
+----
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+----
+| defines a auto generated key
+
+a|
+image::Column_options.png[]
+| options for fields / columns
+
+a|
+[source, Java]
+----
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+----
+| defines a auto generated key
+
+a|
+[source, Java]
+----
+@Transient
+----
+| defines fields that should not be part of the entity
+
+|===
 
 == CRUD
 
