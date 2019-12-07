@@ -45,6 +45,109 @@ For testing the REST service a *request.http* can be created this file should be
 
 The *resources folder* which is also a subfolder of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
 
+=== Rest Config
+
+.Rest Config File
+[source, java]
+----
+package at.htl.vehicle.rest;
+
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("api")
+public class RestConfig extends Application {
+
+}
+----
+
+
+=== XML
+For xml we have to declare the entity as: 
+
+[source, Java]
+----
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Vehicle {}
+----
+
+=== Pom
+.Pom.xml
+[source, XML]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>at.htl</groupId>
+    <artifactId>vehicle</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <build>
+        <finalName>vehicle</finalName>
+    </build>
+
+
+</project>
+----
+
+
+=== Request
+
+.Examples for request.html
+[source, html]
+----
+###
+
+POST http://localhost:8080/person/api/person
+Content-Type: application/json
+
+[
+{
+  "dob": "2001-10-07",
+  "name": "Chiara"
+},
+  {
+  "dob": "2002-03-23",
+  "name": "Christoph"
+}
+]
+
+###
+
+GET http://localhost:8080/person/api/person/demo
+Accept: application/xml
+
+###
+
+GET http://localhost:8080/person/api/person?name=Susi
+----
+
 == JPA
 
 === Entity
@@ -119,6 +222,42 @@ a|
 @Transient
 ----
 | defines fields that should not be part of the entity
+
+a|
+[source, Java]
+----
+/*  Bestellung */
+@OneToMany(mappedBy="bestellung", cascade = CascadeType.Persist, orphanRemoval=true)
+private List<Bestellungsposition> bestellungspositionListe;
+----
+| delete dependent children, when the parent is going to be deleted (child-entites are orphans (=Waisen) then)
+
+a|
+[source, Java]
+----
+/*  Bestelposition */
+@ManyToOne
+private Bestellung bestellung;
+----
+| the inverse part of the relationship
+
+a|
+[source, Java]
+----
+/*  Person */
+@OneToOne
+@JoinColumn(unique = true)
+private Address address;
+----
+| defines a OneToOne relationship and adds a Fk to the Address in the Person
+
+a|
+[source, Java]
+----
+@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+private Address address;
+----
+| the Address would get added the same moment as the parent object and removed
 
 |===
 
