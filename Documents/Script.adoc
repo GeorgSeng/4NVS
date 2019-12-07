@@ -1,0 +1,30 @@
+= Script: NVS 4
+
+// Metadata
+:author: GeorgSEng
+:email: 
+:date: 2019-12-07
+:revision:  1.0
+// Settings
+:source-highlighter: coderay
+:icons: font
+//:sectnums:    // Nummerierung der Überschriften / section numbering
+// Refs:
+//:imagesdir: images
+//:sourcedir-code: src/main/java/at/htl/jdbcprimer
+//:sourcedir-test: src/test/java/at/htl/jdbcprimer
+:toc:
+ 
+Version: {revision}
+
+== JPA
+
+== CRUD
+
+== REST
+
+== Lambda
+
+== AsciiDoc
+
+sdf
