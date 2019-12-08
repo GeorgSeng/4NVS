@@ -1,6 +1,11 @@
 package at.htl.demoTest101.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Album {
+    @Id
     private long id;
     private String name;
 
