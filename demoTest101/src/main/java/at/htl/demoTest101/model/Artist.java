@@ -6,6 +6,11 @@ public class Artist {
 
     //region Constructors
 
+    public Artist(long id, String name) {
+        this.id = id;
+        Name = name;
+    }
+
     public Artist(String name) {
         Name = name;
     }
@@ -34,5 +39,16 @@ public class Artist {
 
     //endregion
 
+    //region Overrides
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id=" + id +
+                ", Name='" + Name + '\'' +
+                '}';
+    }
+
+    //endregion
 
 }
