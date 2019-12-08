@@ -15,6 +15,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ApplicationScoped
@@ -37,13 +39,20 @@ public class InitBean {
     private void readArtistFromCsv(String fileName) {
         URL url = Thread.currentThread().getContextClassLoader()
                 .getResource(fileName);
-        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8)) {
-            stream
+        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.ISO_8859_1)) {
+
+            List<Artist> artistList = stream
                     .skip(1)
                     .map(line -> line.split(";"))
-                    .map(elm -> new Artist( Long.parseLong(elm[0]), elm[1]))
+                    .map( elem -> new Artist( Long.valueOf(elem[0]), elem[1]))
+                    .collect(Collectors.toList());
+            //em.getTransaction().begin();
+            for (Artist item : artistList ) {
+                em.merge(item);
+            }
+            //em.getTransaction().commit();
                     //.forEach(em::merge);
-                    .forEach(System.out::println);
+                    //.forEach(p -> System.out.println(p));
         } catch (IOException e) {
             e.printStackTrace();
         }

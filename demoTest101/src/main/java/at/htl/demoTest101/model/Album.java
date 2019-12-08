@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Album {
     @Id
-    private long id;
+    private Long id;
     private String name;
 
     //region Constructors
