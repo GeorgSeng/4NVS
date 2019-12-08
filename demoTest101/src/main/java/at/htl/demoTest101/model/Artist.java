@@ -1,8 +1,7 @@
 package at.htl.demoTest101.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Artist")
@@ -10,6 +9,8 @@ public class Artist {
     @Id
     private long id;
     private String Name;
+    @OneToMany(mappedBy = "artist", orphanRemoval = true)
+    private List<Album> albumList;
 
     //region Constructors
 
