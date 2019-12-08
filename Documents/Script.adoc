@@ -28,6 +28,27 @@ For Example:
     <artifactId>PersonRest</artifactId>
 ----
 
+=== Configure Data Source & and Drivers
+
+|===
+| Option | Input
+
+| Driver | Apache Derby (Remote)
+
+| Host | localhost
+
+| Port | 1527
+
+| User | app
+
+| Password | app
+
+| Database | db
+
+| URL | jdbc:derby://localhost:1527/db
+
+|===
+
 === Project Structure
 
 image::Project_Structure.png[]
