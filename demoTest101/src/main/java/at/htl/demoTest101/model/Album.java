@@ -15,6 +15,11 @@ public class Album {
 
     //region Constructors
 
+    public Album(Long id, String name, Artist artist) {
+        this.id = id;
+        this.name = name;
+        this.artist = artist;
+    }
 
     public Album(Long id, String name) {
         this.id = id;
@@ -26,6 +31,8 @@ public class Album {
     }
 
     public Album(){}
+
+
     //
 
     //region Properties
