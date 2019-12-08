@@ -39,8 +39,7 @@ public class InitBean {
                     .forEach(System.out::println);
                     //.forEach(em::merge);
         } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
+            e.printStackTrace();        }finally {
             //em.getTransaction().commit();
         }
     }

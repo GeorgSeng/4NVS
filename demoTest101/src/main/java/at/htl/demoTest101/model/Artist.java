@@ -1,6 +1,13 @@
 package at.htl.demoTest101.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Artist")
 public class Artist {
+    @Id
     private long id;
     private String Name;
 
