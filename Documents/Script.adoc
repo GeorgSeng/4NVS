@@ -353,14 +353,17 @@ private Address address;
 ----
 == CRUD
 * Create: persist entity
+[source, java]
 ----
     em.persist(person);
 ----
 * Read: find entity by id
+[source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
 ----
 * Update: update entity fields
+[source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
     person.setName("Jane Doe");
@@ -370,6 +373,7 @@ private Address address;
     // executes update for the name of the person
 ----
 * Delete: remove entity
+[source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
     em.remove(person);
