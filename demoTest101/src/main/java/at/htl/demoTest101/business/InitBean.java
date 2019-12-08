@@ -3,6 +3,7 @@ package at.htl.demoTest101.business;
 //import javax.enterprise.context.ApplicationScoped;
 
 import at.htl.demoTest101.model.Artist;
+import at.htl.demoTest101.model.Genre;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
@@ -26,6 +27,7 @@ public class InitBean {
     EntityManager em;
 
     private static final String _artistFile = "Artist.csv";
+    private static final String _genreFile = "Genre.csv";
 
     @Transactional
     public void init(
@@ -34,6 +36,7 @@ public class InitBean {
 
         System.out.println("Hello");
         readArtistFromCsv(_artistFile);
+        readGenreFromCsv(_genreFile);
     }
 
     private void readArtistFromCsv(String fileName) {
@@ -48,11 +51,36 @@ public class InitBean {
                     .collect(Collectors.toList());
             //em.getTransaction().begin();
             for (Artist item : artistList ) {
+                System.out.println(item);
                 em.merge(item);
             }
             //em.getTransaction().commit();
                     //.forEach(em::merge);
                     //.forEach(p -> System.out.println(p));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readGenreFromCsv(String fileName) {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ read Genre.csv");
+        URL url = Thread.currentThread().getContextClassLoader()
+                .getResource(fileName);
+        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.ISO_8859_1)) {
+
+            List<Genre> artistList = stream
+                    .skip(1)
+                    .map(line -> line.split(";"))
+                    .map( elem -> new Genre( Long.valueOf(elem[0]), elem[1]))
+                    .collect(Collectors.toList());
+            //em.getTransaction().begin();
+            for (Genre item : artistList ) {
+                System.out.println(item);
+                em.merge(item);
+            }
+            //em.getTransaction().commit();
+            //.forEach(em::merge);
+            //.forEach(p -> System.out.println(p));
         } catch (IOException e) {
             e.printStackTrace();
         }
