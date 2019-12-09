@@ -7,7 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/rest/RestConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/requests/request.http" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/requests/request.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/business/InitBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/business/InitBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/rest/ArtistEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/rest/ArtistEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +188,8 @@
       <workItem from="1574946295773" duration="11000" />
       <workItem from="1575752870707" duration="2827000" />
       <workItem from="1575761928682" duration="883000" />
-      <workItem from="1575925911988" duration="263000" />
+      <workItem from="1575925911988" duration="426000" />
+      <workItem from="1575927167942" duration="757000" />
     </task>
     <servers />
   </component>
