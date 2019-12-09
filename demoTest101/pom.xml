@@ -23,4 +23,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>ms</finalName>
+    </build>
+
 </project>

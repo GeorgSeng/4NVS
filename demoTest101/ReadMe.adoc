@@ -1,2 +1,2 @@
 == Project Goal:
-=== It should be a representation of a Music Store
+=== It is supposed to be a representation of a Music Store adn Practise for Test
