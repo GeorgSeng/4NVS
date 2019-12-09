@@ -39,7 +39,7 @@ public class InitBean {
         System.out.println("Hello");
         readArtistFromCsv(_artistFile);
         readGenreFromCsv(_genreFile);
-        readAlbumFromCsv(_albumFile);
+        //readAlbumFromCsv(_albumFile);
     }
 
     private void readArtistFromCsv(String fileName) {

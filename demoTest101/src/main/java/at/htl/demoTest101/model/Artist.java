@@ -5,6 +5,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "Artist")
+@NamedQueries({
+        @NamedQuery(
+            name = "Artist.findAll",
+            query = "select a from Artist a"
+        )
+})
 public class Artist {
     @Id
     private long id;
