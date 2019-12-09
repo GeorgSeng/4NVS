@@ -1,0 +1,2 @@
+GET http://localhost:8080/ms/api/Artist
+Accept: application/json
