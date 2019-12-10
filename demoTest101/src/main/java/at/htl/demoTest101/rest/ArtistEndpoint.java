@@ -20,7 +20,7 @@ public class ArtistEndpoint {
     EntityManager em;
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.TEXT_PLAIN})
     public List<Artist> findAll() {
         return em
                 .createNamedQuery("Artist.findAll",Artist.class)
@@ -28,7 +28,7 @@ public class ArtistEndpoint {
     }
 
     @GET
-    //@Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("getAll")
     public Response returnResponse(){
         List<Artist> artists =em

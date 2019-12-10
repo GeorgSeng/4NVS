@@ -187,9 +187,7 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
                 , StandardCharsets.UTF_8)) {
             stream
                     .skip(1)
-                    .map(line -> line.split(";"))
-                    .map(elem -> new Person(elem[0], elem[1], elem[2]))
-                    //.forEach(System.out::println);
+                    ...
                     .forEach(em::merge);
         } catch (IOException e) {
             e.printStackTrace();

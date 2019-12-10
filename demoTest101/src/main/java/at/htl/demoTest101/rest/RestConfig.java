@@ -1,7 +1,9 @@
 package at.htl.demoTest101.rest;
 
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
 @ApplicationPath("api")
-public class RestConfig {
+public class RestConfig extends Application {
+
 }

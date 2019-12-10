@@ -37,8 +37,8 @@ public class InitBean {
             @Initialized(ApplicationScoped.class) Object object){
 
         System.out.println("Hello");
-        //readArtistFromCsv(_artistFile);
-        //readGenreFromCsv(_genreFile);
+        readArtistFromCsv(_artistFile);
+        readGenreFromCsv(_genreFile);
         //readAlbumFromCsv(_albumFile); //Error
     }
 

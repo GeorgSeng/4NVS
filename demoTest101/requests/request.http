@@ -1,4 +1,4 @@
 GET http://localhost:8080/ms/api/artist/getAll
-
+Accept: application/json
 
 ###
