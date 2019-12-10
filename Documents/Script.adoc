@@ -176,6 +176,8 @@ For xml we have to declare the entity as:
 === Read data from csv
 https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/
 
+.Example for Read a CSV
+[source, java]
 ----
     private void init(
         @Observes
@@ -197,6 +199,7 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
         }
     }
 ----
+
 
 == JPA
 JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.
@@ -278,10 +281,12 @@ a|
 [source, Java]
 ----
 /*  Bestellung */
-@OneToMany(mappedBy="bestellung", cascade = CascadeType.Persist, orphanRemoval=true)
+@OneToMany(mappedBy="bestellung", 
+cascade = CascadeType.Persist, orphanRemoval=true)
 private List<Bestellungsposition> bestellungspositionListe;
 ----
-| delete dependent children, when the parent is going to be    deleted (child-entites are orphans (=Waisen) then)
+| delete dependent children, when the parent is going to be 
+deleted (child-entites are orphans (=Waisen) then)
 
 a|
 [source, Java]
@@ -364,7 +369,7 @@ private Address address;
 === JPQL
 Java Persistance Query Language
 
-.More Complex Example
+.More Advanced Example
 [source, java]
 ----
     public void getStuff(){
@@ -375,6 +380,24 @@ Java Persistance Query Language
         for (AwesomePeopleDetail apc : result2) {
             System.out.println(apc.isAwesome() + ": " + apc.getCount());
         }
+    }
+----
+
+.Query Responde Class
+[source, java]
+----
+    public class AwesomePeopleDetail {
+
+        private boolean isAwesome;
+        private long count;
+
+        public AwesomePeopleDetail(boolean isAwesome, long count) {
+            this.isAwesome = isAwesome;
+            this.count = count;
+        }
+        //region Properties
+        ...
+        //endregion
     }
 ----
 
@@ -396,16 +419,19 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 ----
 == CRUD
 * Create: persist entity
+
 [source, java]
 ----
     em.persist(person);
 ----
 * Read: find entity by id
+
 [source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
 ----
 * Update: update entity fields
+
 [source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
@@ -416,6 +442,7 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
     // executes update for the name of the person
 ----
 * Delete: remove entity
+
 [source, java]
 ----
     Person person = em.find(Person.class, "1234010190");
@@ -428,7 +455,23 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 //<<< //page brake
 == REST
 
-.Example for a Endpoint
+=== Http Methods
+
+* Get
+* Post
+* HEAD
+* PUT
+* DELETE
+* TRACE
+* OPTIONS
+* CONNECT
+
+Good Source:
+https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
+
+=== Examples
+
+.Common Inports
 [source, java]
 ----
     import javax.annotation.PostConstruct;
@@ -441,7 +484,11 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
     import java.time.LocalDate;
     import java.time.format.DateTimeFormatter;
     import java.util.List;
+----
 
+.Example for a Endpoint
+[source, java]
+----
     @Path("person")
     public class PersonEndpoint {
 
@@ -452,16 +499,17 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
         EntityManager em;
 
         @GET
-        @Produces({
-                MediaType.APPLICATION_JSON,
-                MediaType.APPLICATION_XML
-        })
+        @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XM})
         public List<Person> findAll() {
             return em
                     .createNamedQuery("Person.findAll", Person.class)
                     .getResultList();
         }
+----
 
+.Example for a Post
+[source, java]
+----
         @POST
         @Consumes(MediaType.APPLICATION_JSON)
         @Transactional
@@ -491,4 +539,4 @@ https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
 == AsciiDoc
 
-sdf
+Great
