@@ -15,8 +15,12 @@ public class Artist {
     @Id
     private long id;
     private String Name;
+
     @OneToMany(mappedBy = "artist", orphanRemoval = true)
     private List<Album> albumList;
+
+//    @OneToMany(mappedBy = "artist", orphanRemoval = true)
+//    private List<Track> trackList;
 
     //region Constructors
 

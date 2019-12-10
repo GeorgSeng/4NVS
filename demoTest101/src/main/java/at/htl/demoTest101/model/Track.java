@@ -11,9 +11,7 @@ public class Track {
     private long id;
     private String name;
 
-    @ManyToOne
-    //@JoinColumn(name = "Artist.id");
-    private Artist artist;
+
 
     @ManyToOne
     //@JoinColumn(name = "Album.Id")
@@ -33,11 +31,11 @@ public class Track {
     public Track() {
     }
 
-    public Track(long id, String name, Artist artist, Album album, Genre genre, String composer,
+    public Track(long id, String name, Album album, Genre genre, String composer,
                  long milliseconds, long bytes, double unitPrice){
         this.id = id;
         this.name = name;
-        this.artist = artist;
+
         this.album = album;
         this.genre = genre;
         this.composer = composer;
@@ -49,7 +47,7 @@ public class Track {
     public Track(String name, Artist artist, Album album, Genre genre, String composer,
                  long milliseconds, long bytes, double unitPrice){
         this.name = name;
-        this.artist = artist;
+
         this.album = album;
         this.genre = genre;
         this.composer = composer;
@@ -126,14 +124,6 @@ public class Track {
         this.unitPrice = unitPrice;
     }
 
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
     //endregion
 
     //region Overrides
@@ -143,7 +133,6 @@ public class Track {
         return "Track{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Artist='" + artist + '\'' +
                 ", Album='" + album + '\'' +
                 ", Genre='" + genre + '\'' +
                 ", composer='" + composer + '\'' +
