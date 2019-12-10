@@ -49,6 +49,9 @@ For Example:
 
 |===
 
+Good Source:
+https://www.tutorialspoint.com/intellij_idea/index.htm
+
 === Project Structure
 
 image::Project_Structure.png[]
@@ -357,6 +360,27 @@ private Address address;
         .getSingleResult();
     }
 ----
+
+=== JPQL
+Java Persistance Query Language
+
+.More Complex Example
+[source, java]
+----
+    public void getStuff(){
+        System.out.println("\n JPA_1 | Query2:");
+        Query query2 = em.createQuery(
+                "SELECT NEW demo.AwesomePeopleDetail(p.isAwesome, count(p.SSN)) from Person p group by p.isAwesome");
+        List<AwesomePeopleDetail> result2 = query2.getResultList();
+        for (AwesomePeopleDetail apc : result2) {
+            System.out.println(apc.isAwesome() + ": " + apc.getCount());
+        }
+    }
+----
+
+Good Sources:
+https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
+
 === Enitiy Manager
 
 [source, java]
@@ -459,7 +483,11 @@ private Address address;
         }
 ----
 
-== Lambda
+== Technologies
+
+=== Jakarta EE
+good source:
+https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
 == AsciiDoc
 
