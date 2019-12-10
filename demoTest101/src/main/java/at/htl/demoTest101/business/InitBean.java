@@ -46,9 +46,10 @@ public class InitBean {
         readAlbumFromCsv(_albumFile);
         //readTrackFromCsv(_trackFile);
 
-        //Track t = new Track(1, "NoWay", em.find(Artist.class, 1), em.find(Album.class, 1), em.find(Genre.class, 1), "King", 123, 123, 12.2);
+
+        //Track t = new Track((long)1, "NoWay", em.find(Artist.class, (long)1), em.find(Album.class, (long)1), em.find(Genre.class, (long)1), "King", (long)123, (long)123, (double) 12.2);
         //em.merge(t);
-        System.out.println("YES");
+        //System.out.println("YES");
     }
 
     private void readTrackFromCsv(String trackFile) {
@@ -60,7 +61,12 @@ public class InitBean {
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.ISO_8859_1)){
             stream.skip(1)
                     .map(line -> line.split(";"))
-                    .map( elem -> new Track());
+                    .map( elem -> new Track(Long.valueOf(elem[0]), elem[1],
+                            em.find(Artist.class, Long.valueOf(elem[2])),
+                            em.find(Album.class, Long.valueOf(elem[3])),
+                            em.find(Genre.class, Long.valueOf(elem[4])),
+                            elem[5], Long.valueOf(elem[5]), Long.valueOf(elem[6]), Double.valueOf(elem[7])))
+                    .forEach(em::merge);
         } catch (IOException e) {
             e.printStackTrace();
         }
