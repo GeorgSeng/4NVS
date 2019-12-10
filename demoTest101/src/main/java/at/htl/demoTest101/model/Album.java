@@ -1,10 +1,15 @@
 package at.htl.demoTest101.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Album")
+@NamedQueries({
+        @NamedQuery(
+                name = "Album.findAll",
+                query = "select a from Album a"
+        )
+})
 public class Album {
     @Id
     private Long id;
