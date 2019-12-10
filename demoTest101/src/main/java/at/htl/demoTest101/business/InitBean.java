@@ -39,7 +39,7 @@ public class InitBean {
         System.out.println("Hello");
         readArtistFromCsv(_artistFile);
         readGenreFromCsv(_genreFile);
-        //readAlbumFromCsv(_albumFile); //Error
+        readAlbumFromCsv(_albumFile);
     }
 
     private void readArtistFromCsv(String fileName) {
@@ -52,7 +52,6 @@ public class InitBean {
                     .map(line -> line.split(";"))
                     .map( elem -> new Artist( Long.valueOf(elem[0]), elem[1]))
                     .collect(Collectors.toList());
-            //em.getTransaction().begin();
             for (Artist item : artistList ) {
                 System.out.println(item);
                 em.merge(item);
@@ -76,14 +75,10 @@ public class InitBean {
                     .map(line -> line.split(";"))
                     .map( elem -> new Genre( Long.valueOf(elem[0]), elem[1]))
                     .collect(Collectors.toList());
-            //em.getTransaction().begin();
             for (Genre item : artistList ) {
                 System.out.println(item);
                 em.merge(item);
             }
-            //em.getTransaction().commit();
-            //.forEach(em::merge);
-            //.forEach(p -> System.out.println(p));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,28 +93,14 @@ public class InitBean {
             List<Album> artistList = stream
                     .skip(1)
                     .map(line -> line.split(";"))
-                    .map( elem -> new Album( Long.valueOf(elem[0]), elem[1], em.find(Artist.class, Integer.valueOf(elem[2]))))//
+                    .map( elem -> new Album( Long.valueOf(elem[0]), elem[1], em.find(Artist.class, Long.valueOf(elem[2]))))//
                     .collect(Collectors.toList());
-            //em.getTransaction().begin();
             for (Album item : artistList ) {
-                //em.find(Artist.class, elem[2])
                 System.out.println(item);
                 em.merge(item);
             }
-            //em.getTransaction().commit();
-            //.forEach(em::merge);
-            //.forEach(p -> System.out.println(p));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    /*
-    * Caused by: java.lang.IllegalArgumentException: Provided id of the wrong type for class at.htl.demoTest101.model.Artist. Expected: class java.lang.Long, got class java.lang.Integer
-	at org.hibernate@5.3.10.Final//org.hibernate.internal.SessionImpl.find(SessionImpl.java:3511)
-	at org.hibernate@5.3.10.Final//org.hibernate.internal.SessionImpl.find(SessionImpl.java:3454)
-	at org.jboss.as.jpa@17.0.1.Final//org.jboss.as.jpa.container.AbstractEntityManager.find(AbstractEntityManager.java:213)
-	at deployment.demoTest101-1.0-SNAPSHOT.war//at.htl.demoTest101.business.InitBean.lambda$readAlbumFromCsv$5(InitBean.java:101)
-
-    * */
 }
