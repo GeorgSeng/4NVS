@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/business/InitBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/business/InitBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/model/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/model/Artist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/model/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/model/Track.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
