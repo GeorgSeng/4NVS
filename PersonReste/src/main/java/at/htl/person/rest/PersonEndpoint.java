@@ -19,7 +19,7 @@ public class PersonEndpoint {
 
     public PersonEndpoint(){}
 
-    @PersistenceContext
+    @PersistenceCo
     EntityManager em;
 
     @GET
