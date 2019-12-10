@@ -7,3 +7,12 @@ GET http://localhost:8080/ms/api/artist/
 
 ###
 
+GET http://localhost:8080/ms/api/album
+Accept: application/json
+
+###
+
+GET http://localhost:8080/ms/api/album
+Accept: application/xml
+
+###

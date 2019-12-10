@@ -1,9 +1,11 @@
 package at.htl.demoTest101.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "Album")
+@XmlRootElement
 @NamedQueries({
         @NamedQuery(
                 name = "Album.findAll",
