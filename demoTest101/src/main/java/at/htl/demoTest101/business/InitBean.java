@@ -5,6 +5,7 @@ package at.htl.demoTest101.business;
 import at.htl.demoTest101.model.Album;
 import at.htl.demoTest101.model.Artist;
 import at.htl.demoTest101.model.Genre;
+import at.htl.demoTest101.model.Track;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
@@ -12,10 +13,12 @@ import javax.enterprise.event.Observes;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +33,7 @@ public class InitBean {
     private static final String _artistFile = "Artist.csv";
     private static final String _genreFile = "Genre.csv";
     private static final String _albumFile = "Album.csv";
+    private static final String _trackFile = "Tracks.csv";
 
     @Transactional
     public void init(
@@ -40,9 +44,30 @@ public class InitBean {
         readArtistFromCsv(_artistFile);
         readGenreFromCsv(_genreFile);
         readAlbumFromCsv(_albumFile);
+        //readTrackFromCsv(_trackFile);
+
+        //Track t = new Track(1, "NoWay", em.find(Artist.class, 1), em.find(Album.class, 1), em.find(Genre.class, 1), "King", 123, 123, 12.2);
+        //em.merge(t);
+        System.out.println("YES");
+    }
+
+    private void readTrackFromCsv(String trackFile) {
+
+        //Id;Name;AlbumId;GenreId;Composer;Milliseconds;Bytes;UnitPrice
+        //1;For Those About To Rock (We Salute You);1;1;Angus Young, Malcolm Young, Brian Johnson;343719;11170334;0,99
+        URL url = Thread.currentThread().getContextClassLoader()
+                .getResource(trackFile);
+        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.ISO_8859_1)){
+            stream.skip(1)
+                    .map(line -> line.split(";"))
+                    .map( elem -> new Track());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void readArtistFromCsv(String fileName) {
+        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ read Genre.csv");
         URL url = Thread.currentThread().getContextClassLoader()
                 .getResource(fileName);
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.ISO_8859_1)) {
