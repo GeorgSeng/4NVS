@@ -7,8 +7,7 @@
 |---|---|---|---|---|---|
 | FirstProject | Get started | 19-Sep-2019  | X |  | WildFlay, DerbyDB |
 | RestPrimer | Get started with REST | 03-Oct-2019 | X |   | Jakarta |
-| RestPrimer-st | Get Started with a Test Client | 03-Oct-2019
- |   | X | Java SE |
+| RestPrimer-st | Get Started with a Test Client | 03-Oct-2019|   | X | Java SE |
 | Vehicle | Practice REST | 09-Oct-2019 | X |   | --""-- |
 | Vehicle-st | Practice Java SE Test Client | 09-Oct-2019 |   | X | --""-- |
 | PersonRest | Practice REST/JPA/JPQL/CRUD | 14-Nov-2019 | X |   | --""-- |
