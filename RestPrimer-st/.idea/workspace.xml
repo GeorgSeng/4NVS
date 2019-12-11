@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests">
+      <change beforePath="$PROJECT_DIR$/../Documents/Script.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Script.adoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Documents/Script.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Script.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PersonReste/.idea/PersonReste.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PersonReste/.idea/PersonReste.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PersonReste/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +51,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
   </component>
   <component name="RunManager" selected="JUnit.TimeServerResourceIT">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -110,7 +115,7 @@
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
       <workItem from="1574946403980" duration="19000" />
-      <workItem from="1576069534950" duration="2259000" />
+      <workItem from="1576069534950" duration="6519000" />
     </task>
     <task id="LOCAL-00001" summary="GeorgSeng: Add to PersonRest-st a Main for working with requests">
       <created>1576085445693</created>
@@ -175,6 +180,10 @@
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state x="1693" y="809" width="479" height="581" key="RollbackChangesDialog/46.27.3794.2133@46.27.3794.2133" timestamp="1576085508238" />
+    <state x="483" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1576090720022">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="483" y="728" width="1022" height="737" key="SettingsEditor/46.27.3794.2133@46.27.3794.2133" timestamp="1576090720022" />
     <state x="1538" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1576085528262">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>

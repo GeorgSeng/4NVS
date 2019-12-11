@@ -5,14 +5,14 @@
 :date: 2019-12-07
 :revision:  1.0
 // Settings
-//:source-highlighter: coderay
-//:icons: font
+:source-highlighter: coderay
+:icons: font
 :sectnums:    // Nummerierung der Überschriften / section numbering
 // Refs:
 :imagesdir: /home/georg/Documents/4NVS/Documents/images
 //:sourcedir-code: src/main/java/at/htl/jdbcprimer
 //:sourcedir-test: src/test/java/at/htl/jdbcprimer
-:toc:
+
  
 Version: {revision}
 
@@ -52,43 +52,36 @@ For Example:
 Good Source:
 https://www.tutorialspoint.com/intellij_idea/index.htm
 
+=== Start DerbyDB
+
+.Start DB:
+[source, shell]
+----
+demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager
+----
+
 === Project Structure
 
 image::Project_Structure.png[]
 
-The source code is usually in 3 subfolders of the main folder *at.htl.project_Name* Folder. The subfolders are *business, model, rest*.
+* The source code is usually in 3 subfolders of the main folder *at.htl.project_Name* Folder. The subfolders are *business, model, rest*.
 
-In the *business folder* is the *InitBean.java* which 
+* In the *business folder* is the *InitBean.java* which 
 contains the init method for the Application server.
 
-In the *model folder* are the *Entities*.
+* In the *model folder* are the *Entities*.
 
-In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
+* In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
 
-For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subfolder of the project's root directory.
+* For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subfolder of the project's root directory.
 
-The *resources folder* which is also a subfolder of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
-
-=== Rest Config
-
-.Rest Config File
-[source, java]
-----
-    package at.htl.vehicle.rest;
-
-    import javax.ws.rs.ApplicationPath;
-    import javax.ws.rs.core.Application;
-
-    @ApplicationPath("api")
-    public class RestConfig extends Application {
-
-    }
-----
+* The *resources folder* which is also a subfolder of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
 
 
 === XML
 For xml we have to declare the entity as: 
 
+.Example for Entity with XML
 [source, Java]
 ----
     import javax.xml.bind.annotation.XmlRootElement;
@@ -97,7 +90,7 @@ For xml we have to declare the entity as:
     public class Vehicle {}
 ----
 
-=== Pom
+=== Pom.xml
 .Pom.xml
 [source, XML]
 ----
@@ -111,6 +104,11 @@ For xml we have to declare the entity as:
         <artifactId>vehicle</artifactId>
         <version>1.0-SNAPSHOT</version>
         <packaging>war</packaging>
+
+                <properties>
+            <maven.compiler.source>11</maven.compiler.source>
+            <maven.compiler.target>11</maven.compiler.target>
+        </properties>
 
         <dependencies>
             <dependency>
@@ -127,11 +125,6 @@ For xml we have to declare the entity as:
             </dependency>
         </dependencies>
 
-        <properties>
-            <maven.compiler.source>11</maven.compiler.source>
-            <maven.compiler.target>11</maven.compiler.target>
-        </properties>
-
         <build>
             <finalName>vehicle</finalName>
         </build>
@@ -140,10 +133,21 @@ For xml we have to declare the entity as:
     </project>
 ----
 
+.Useful Package sources
+[source, xml]
+----
+                            <!-- Useful Sources -->
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-processing -->
+    <!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
+    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+----
 
 === Request
 
-.Examples for request.html
+.Examples for request.http
 [source, html]
 ----
 ###
@@ -172,11 +176,28 @@ For xml we have to declare the entity as:
     GET http://localhost:8080/person/api/person?name=Susi
 ----
 
+=== Rest Config
+
+.Rest Config File
+[source, java]
+----
+    package at.htl.vehicle.rest;
+
+    import javax.ws.rs.ApplicationPath;
+    import javax.ws.rs.core.Application;
+
+    @ApplicationPath("api")
+    public class RestConfig extends Application {
+
+    }
+----
 
 === Read data from csv
+
+Good Source:
 https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/
 
-.Example for Read a CSV
+.Example for read csv in InitBean
 [source, java]
 ----
     private void init(
@@ -224,8 +245,7 @@ JPA is a concept that can be implemented like a interface, the current reference
     }
 ----
 
-
-*import javax.persistence.**;
+*Source Package: import javax.persistence.**;
 
 .Annotations:
 |===
@@ -335,41 +355,12 @@ private Address address;
 
 |===
 
-=== Named Query
-
-.Example for Queries
-[source, java]
-----
-    @Entity
-    @NamedQueries({
-            @NamedQuery(
-                    name = "Person.findAll",
-                    query = "select p from Person p"
-            ),
-            @NamedQuery(
-                    name = "Person.findByName",
-                    query = "select p from Person p where p.name = :NAME"
-            )
-    })
-----
-
-.Rest Example for using a NamedQuery
-[source, java]
-----
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Person findByName(@QueryParam("name") String name) {
-        return em
-        .createNamedQuery("Person.findByName",Person.class)
-        .setParameter("NAME", name)
-        .getSingleResult();
-    }
-----
-
 === JPQL
 Java Persistance Query Language
 
-.More Advanced Example
+Query:
+
+.Example for More Advanced Example
 [source, java]
 ----
     public void getStuff(){
@@ -383,7 +374,9 @@ Java Persistance Query Language
     }
 ----
 
-.Query Responde Class
+Exmple for a Responde Obect:
+
+.Example for Query Responde Class
 [source, java]
 ----
     public class AwesomePeopleDetail {
@@ -401,11 +394,64 @@ Java Persistance Query Language
     }
 ----
 
+Exmple for saving Respone in a Tuble:
+
+.Example for a Tuble Responde
+[source, Java]
+----
+    private static void secondQuery(EntityManager em) {
+        TypedQuery<Tuple> query = em.createQuery("select o.id, p.firstName || ' ' || p.lastName, a.country 
+            || ' ' || a.city || ' ' || a.street || ' ' || a.streetNo as name, 
+            sum(oi.amount * p2.price) as totalCost, sum(oi.amount) as pieces " +
+                "from Person p join p.addresses a join Order o on o.customer = p join o.orderItems oi " +
+                "join oi.id.product p2 where a.id.addressNo = o.shipmentAddress.id.addressNo group by o, p, a", Tuple.class);
+        Tuple result = query.getResultList().get(0);
+        var shipment = new OrderShipment((int) result.get(0), (String) result.get(1), (String) result.get(2), 
+            (BigDecimal) result.get(3), Math.toIntExact((long) result.get(4)));
+        printShipmentInfo(shipment);
+    }
+----
+
+=== Named Query
+
+.Example for NamedQueries
+[source, java]
+----
+    @Entity
+    @NamedQueries({
+            @NamedQuery(
+                    name = "Person.findAll",
+                    query = "select p from Person p"
+            ),
+            @NamedQuery(
+                    name = "Person.findByName",
+                    query = "select p from Person p where p.name = :NAME"
+            )
+    })
+----
+
+.Example for a Rest using a NamedQuery
+[source, java]
+----
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Person findByName(@QueryParam("name") String name) {
+        return em
+        .createNamedQuery("Person.findByName",Person.class)
+        .setParameter("NAME", name)
+        .getSingleResult();
+    }
+----
+
+
 Good Sources:
 https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 
 === Enitiy Manager
 
+Example for creating a Entity Manager
+
+.Eample for Creating a EntityManager
 [source, java]
 ----
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("my−persistence−unit");
@@ -417,6 +463,8 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
     // or em.getTransaction().rollback();
     em.close();
 ----
+
+
 == CRUD
 * Create: persist entity
 
@@ -457,11 +505,11 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 
 === Http Methods
 
-* Get
-* Post
+* Get (Read: all or a specific resource)
+* Post (Create or Update: without a specific ID)
 * HEAD
-* PUT
-* DELETE
+* PUT (Create or Update: with a specific ID)
+* DELETE (delete a specific resource)
 * TRACE
 * OPTIONS
 * CONNECT
@@ -469,9 +517,9 @@ https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 Good Source:
 https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 
-=== Examples
+=== Examples a RestEndpoint
 
-.Common Inports
+.Common Inports for a RestEndpoint
 [source, java]
 ----
     import javax.annotation.PostConstruct;
@@ -510,33 +558,76 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 .Example for a Post
 [source, java]
 ----
-        @POST
-        @Consumes(MediaType.APPLICATION_JSON)
-        @Transactional
-        public Response createPerson(
-                final @Context UriInfo uriInfo,
-                JsonValue jsonValue) {
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response createPerson(
+            final @Context UriInfo uriInfo,
+            JsonValue jsonValue) {
 
-            if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
-                JsonArray jsonArray = jsonValue.asJsonArray();
-                for (JsonValue value : jsonArray) {
-                    String name = value.asJsonObject().getString("name");
-                    ...
-                    p = em.merge(p);
-                }
-            } else {
-                System.out.println("Ich bin ein Object");
+        if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
+            JsonArray jsonArray = jsonValue.asJsonArray();
+            for (JsonValue value : jsonArray) {
+                String name = value.asJsonObject().getString("name");
+                ...
+                p = em.merge(p);
             }
-            return Response.ok().build();
+        } else {
+            System.out.println("Ich bin ein Object");
         }
+        return Response.ok().build();
+    }
+----
+
+=== Examples for a RestClient
+
+.Exmaple for a get in a Java SE client
+[source, java]
+----
+    //import javax.ws.rs.* //core or client;
+
+    Client client = ClientBuilder.newClient();
+    WebTarget tut = client.target("http://localhost:8080/restprimer/api/time");
+
+    Response response = tut.request(MediaType.TEXT_PLAIN).get();
+    String payload = response.readEntity(String.class);
+    System.out.println("Request: " + payload);
 ----
 
 == Technologies
 
 === Jakarta EE
-good source:
+Good Source:
 https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
+=== Junit
+
+.Method Anotations
+|===
+|tag | Description
+a| @Test | Turns a public method into a JUnit test case.
+a| @Before | Method to run before every test case
+a| @After | Method to run after every test case
+a| @BeforeClass | Method to run once, before any test cases haverun
+a| @AfterClass | Method to run once, after all test cases have run
+|===
+
+.Assert Methods
+|===
+|Method | Description
+a| assertTrue(test) | fails if the Boolean test is false
+a| assertFalse(test) | fails if the Boolean test is true
+a| assertEquals(expected, actual) | fails if the values are not equal
+a| assertSame(expected, actual) | fails if the values are not the same (by ==)haverun
+a| assertNotSame(expected, actual) | fails if the values are the same (by ==)
+a| assertNull(value) | fails if the given value is notnull
+a| assertNotNull(value) | fails if the given value is null
+a| fail() | causes current test to immediately fail
+a| assertEquals(“message”, expected, actual) | Each method can also be passed a string to display if it fails
+|===
+
+Good Source:
+https://www.javatpoint.com/
 == AsciiDoc
 
 Great
