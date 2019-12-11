@@ -13,6 +13,7 @@
 | PersonRest | Practice REST/JPA/JPQL/CRUD | 14-Nov-2019 | X |   | --""-- |
 | ReadCsv | Practice for Test | 05-Dec-2019 | X |   | --""-- |
 | demoTest101 | Practice for Test | 08-Dec-2019 | X |   | --""-- |
+| demoTest101-st | Practice for Test | 11-Dec-2019 |  | X | --""-- |
 
 ### Documents
 
