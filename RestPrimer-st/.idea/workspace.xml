@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests" />
+    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests">
+      <change afterPath="$PROJECT_DIR$/../demoTest101-st/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demoTest101-st/src/test/java/ArtistEndpointTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demoTest101-st/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demoTest101-st/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +50,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunManager" selected="JUnit.TimeServerResourceIT">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -109,7 +114,7 @@
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
       <workItem from="1574946403980" duration="19000" />
-      <workItem from="1576069534950" duration="6853000" />
+      <workItem from="1576069534950" duration="8981000" />
     </task>
     <task id="LOCAL-00001" summary="GeorgSeng: Add to PersonRest-st a Main for working with requests">
       <created>1576085445693</created>
@@ -150,34 +155,34 @@
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state x="1508" y="687" width="860" height="819" key="CommitChangelistDialog2/46.27.3794.2133@46.27.3794.2133" timestamp="1576085510778" />
-    <state width="3748" height="267" key="GridCell.Tab.0.bottom" timestamp="1576085313881">
+    <state width="3748" height="267" key="GridCell.Tab.0.bottom" timestamp="1576099315363">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state width="1828" height="267" key="GridCell.Tab.0.bottom/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776414" />
-    <state width="3748" height="267" key="GridCell.Tab.0.bottom/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
-    <state width="3748" height="267" key="GridCell.Tab.0.center" timestamp="1576085313881">
+    <state width="3748" height="267" key="GridCell.Tab.0.bottom/46.27.3794.2133@46.27.3794.2133" timestamp="1576099315363" />
+    <state width="3748" height="267" key="GridCell.Tab.0.center" timestamp="1576099315361">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state width="1828" height="267" key="GridCell.Tab.0.center/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
-    <state width="3748" height="267" key="GridCell.Tab.0.center/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
-    <state width="3748" height="267" key="GridCell.Tab.0.left" timestamp="1576085313880">
+    <state width="3748" height="267" key="GridCell.Tab.0.center/46.27.3794.2133@46.27.3794.2133" timestamp="1576099315361" />
+    <state width="3748" height="267" key="GridCell.Tab.0.left" timestamp="1576099315360">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state width="1828" height="267" key="GridCell.Tab.0.left/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
-    <state width="3748" height="267" key="GridCell.Tab.0.left/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313880" />
-    <state width="3748" height="267" key="GridCell.Tab.0.right" timestamp="1576085313881">
+    <state width="3748" height="267" key="GridCell.Tab.0.left/46.27.3794.2133@46.27.3794.2133" timestamp="1576099315360" />
+    <state width="3748" height="267" key="GridCell.Tab.0.right" timestamp="1576099315362">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state width="1828" height="267" key="GridCell.Tab.0.right/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
-    <state width="3748" height="267" key="GridCell.Tab.0.right/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
+    <state width="3748" height="267" key="GridCell.Tab.0.right/46.27.3794.2133@46.27.3794.2133" timestamp="1576099315362" />
     <state x="1693" y="809" width="479" height="581" key="RollbackChangesDialog" timestamp="1576085508238">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
     <state x="1693" y="809" width="479" height="581" key="RollbackChangesDialog/46.27.3794.2133@46.27.3794.2133" timestamp="1576085508238" />
-    <state x="483" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1576090720022">
+    <state x="483" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1576099185151">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
-    <state x="483" y="728" width="1022" height="737" key="SettingsEditor/46.27.3794.2133@46.27.3794.2133" timestamp="1576090720022" />
+    <state x="483" y="728" width="1022" height="737" key="SettingsEditor/46.27.3794.2133@46.27.3794.2133" timestamp="1576099185151" />
     <state x="1538" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1576085528262">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
