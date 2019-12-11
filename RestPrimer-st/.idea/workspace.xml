@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests">
-      <change beforePath="$PROJECT_DIR$/../Documents/Script.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Script.adoc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documents/Script.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Script.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PersonReste/.idea/PersonReste.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PersonReste/.idea/PersonReste.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PersonReste/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +109,7 @@
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
       <workItem from="1574946403980" duration="19000" />
-      <workItem from="1576069534950" duration="6519000" />
+      <workItem from="1576069534950" duration="6853000" />
     </task>
     <task id="LOCAL-00001" summary="GeorgSeng: Add to PersonRest-st a Main for working with requests">
       <created>1576085445693</created>

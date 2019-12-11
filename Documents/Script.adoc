@@ -9,7 +9,8 @@
 :icons: font
 :sectnums:    // Nummerierung der Überschriften / section numbering
 // Refs:
-:imagesdir: /home/georg/Documents/4NVS/Documents/images
+//:imagesdir: /home/georg/Documents/4NVS/Documents/images
+:imagesdir: /images
 //:sourcedir-code: src/main/java/at/htl/jdbcprimer
 //:sourcedir-test: src/test/java/at/htl/jdbcprimer
 
