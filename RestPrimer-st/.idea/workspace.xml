@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="GeorgSeng: Add to PersonRest-st a Main for working with requests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TimeServerResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TimeServerResourceIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,8 +110,16 @@
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
       <workItem from="1574946403980" duration="19000" />
-      <workItem from="1576069534950" duration="1839000" />
+      <workItem from="1576069534950" duration="2259000" />
     </task>
+    <task id="LOCAL-00001" summary="GeorgSeng: Add to PersonRest-st a Main for working with requests">
+      <created>1576085445693</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576085445693</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,11 +138,19 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="GeorgSeng: Add to PersonRest-st a Main for working with requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="GeorgSeng: Add to PersonRest-st a Main for working with requests" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="554" y="215" key="#Project_Structure" timestamp="1576069569064">
       <screen x="46" y="27" width="1874" height="1053" />
     </state>
     <state x="554" y="215" key="#Project_Structure/46.27.1874.1053@46.27.1874.1053" timestamp="1576069569064" />
+    <state x="1508" y="687" width="860" height="819" key="CommitChangelistDialog2" timestamp="1576085510778">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="1508" y="687" width="860" height="819" key="CommitChangelistDialog2/46.27.3794.2133@46.27.3794.2133" timestamp="1576085510778" />
     <state width="3748" height="267" key="GridCell.Tab.0.bottom" timestamp="1576085313881">
       <screen x="46" y="27" width="3794" height="2133" />
     </state>
@@ -163,5 +171,17 @@
     </state>
     <state width="1828" height="267" key="GridCell.Tab.0.right/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
     <state width="3748" height="267" key="GridCell.Tab.0.right/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
+    <state x="1693" y="809" width="479" height="581" key="RollbackChangesDialog" timestamp="1576085508238">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="1693" y="809" width="479" height="581" key="RollbackChangesDialog/46.27.3794.2133@46.27.3794.2133" timestamp="1576085508238" />
+    <state x="1538" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1576085528262">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="1538" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/46.27.3794.2133@46.27.3794.2133" timestamp="1576085528262" />
+    <state x="303" y="792" width="1372" height="610" key="new project wizard" timestamp="1576085707056">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="303" y="792" width="1372" height="610" key="new project wizard/46.27.3794.2133@46.27.3794.2133" timestamp="1576085707056" />
   </component>
 </project>
