@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcc6c239-0a49-4930-bfdf-c9a7cd8f0a5f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vehicle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vehicle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TimeServerResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TimeServerResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RestPrimer/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/src/main/java/at/htl/restprimer/rest/TimeServerResauce.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +36,11 @@
   </component>
   <component name="ProjectId" id="1Re1QCkjfqYYGN58XWTTlaPwU1S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -42,22 +53,26 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.TimeServerResourceIT">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="RestPrimer-st" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeServerResourceIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RestPrimer-st" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TimeServerResourceIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TimeServerResourceIT.fetchTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RestPrimer-st" />
       <option name="PACKAGE_NAME" value="" />
@@ -70,9 +85,23 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TimeServerResourceIT" />
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.TimeServerResourceIT.fetchTime" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -89,6 +118,7 @@
       <workItem from="1574595799406" duration="325000" />
       <workItem from="1574598269510" duration="7000" />
       <workItem from="1574946403980" duration="19000" />
+      <workItem from="1576069534950" duration="1839000" />
     </task>
     <servers />
   </component>
@@ -107,5 +137,31 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="554" y="215" key="#Project_Structure" timestamp="1576069569064">
+      <screen x="46" y="27" width="1874" height="1053" />
+    </state>
+    <state x="554" y="215" key="#Project_Structure/46.27.1874.1053@46.27.1874.1053" timestamp="1576069569064" />
+    <state width="3748" height="267" key="GridCell.Tab.0.bottom" timestamp="1576085313881">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state width="1828" height="267" key="GridCell.Tab.0.bottom/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776414" />
+    <state width="3748" height="267" key="GridCell.Tab.0.bottom/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
+    <state width="3748" height="267" key="GridCell.Tab.0.center" timestamp="1576085313881">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state width="1828" height="267" key="GridCell.Tab.0.center/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
+    <state width="3748" height="267" key="GridCell.Tab.0.center/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
+    <state width="3748" height="267" key="GridCell.Tab.0.left" timestamp="1576085313880">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state width="1828" height="267" key="GridCell.Tab.0.left/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
+    <state width="3748" height="267" key="GridCell.Tab.0.left/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313880" />
+    <state width="3748" height="267" key="GridCell.Tab.0.right" timestamp="1576085313881">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state width="1828" height="267" key="GridCell.Tab.0.right/46.27.1874.1053@46.27.1874.1053" timestamp="1576070776413" />
+    <state width="3748" height="267" key="GridCell.Tab.0.right/46.27.3794.2133@46.27.3794.2133" timestamp="1576085313881" />
   </component>
 </project>

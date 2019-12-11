@@ -26,6 +26,17 @@ public class TimeServerResourceIT {
         Response response = this.tut.request(MediaType.TEXT_PLAIN).get();
         assertThat(response.getStatus(), is(200));
         String payload = response.readEntity(String.class);
+        System.out.println("Request: " + payload);
+        assertTrue(payload.startsWith("Time: "));
+    }
+
+    @Test
+    public void fetchTime01(){
+        this.tut = client.target("http://localhost:8080/restprimer/api/dod");
+        Response response = this.tut.request(MediaType.TEXT_PLAIN).get();
+        assertThat(response.getStatus(), is(200));
+        String payload = response.readEntity(String.class);
+        System.out.println("Request: " + payload);
         assertTrue(payload.startsWith("Time: "));
     }
 }
