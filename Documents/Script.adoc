@@ -8,6 +8,7 @@
 :source-highlighter: coderay
 :icons: font
 :sectnums:    // Nummerierung der Überschriften / section numbering
+:pdfwidth: pdfwidth=80vw
 // Refs:
 //:imagesdir: /home/georg/Documents/4NVS/Documents/images
 :imagesdir: images
@@ -60,6 +61,8 @@ https://www.tutorialspoint.com/intellij_idea/index.htm
 ----
 demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager
 ----
+
+:hardbreaks:
 
 === Project Structure
 
