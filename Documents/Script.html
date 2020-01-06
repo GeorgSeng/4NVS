@@ -708,13 +708,40 @@ contains the init method for the Application server.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jpa">2. JPA</h2>
+<h2 id="_cdi">2. CDI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_context_dependency_injection">2.1. Context Dependency Injection</h3>
+<div class="paragraph">
+<p>CDI is part of JavaBeans it can be configured in the beans.xml file.</p>
+</div>
+<div class="paragraph">
+<p>With the @Inject the cdi can create a contextual instance of the Object / Class you want to have.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requScop)</p>
+</li>
+<li>
+<p>Constructor injection point (Field gets initialized in the constructor using cdi):  @Inject private ScopesBean(DependentScope){this.dependentScope = dependentScope;}</p>
+</li>
+<li>
+<p>Method injection point is the same as Constructor method.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jpa">3. JPA</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.</p>
 </div>
 <div class="sect2">
-<h3 id="_entity">2.1. Entity</h3>
+<h3 id="_entity">3.1. Entity</h3>
 <div class="listingblock">
 <div class="title">Example Person</div>
 <div class="content">
@@ -809,6 +836,15 @@ contains the init method for the Application server.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">@Enumerated(EnumType.STRING)
+private EmploymentType empType;</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines what kind of datatype of a enum get stored in the db (by default int)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">/*  Bestellung */
 @OneToMany(mappedBy="bestellung",
 cascade = CascadeType.Persist, orphanRemoval=true)
@@ -870,7 +906,100 @@ private Address address;</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_jpql">2.2. JPQL</h3>
+<h3 id="_manytomany_relationship">3.2. ManyToMany Relationship</h3>
+<div class="paragraph">
+<p>There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customaizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.</p>
+</div>
+<div class="sect3">
+<h4 id="_auto_generated_table">3.2.1. Auto Generated Table</h4>
+<div class="listingblock">
+<div class="title">Example Auto Generated Association Table</div>
+<div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">    @Entity
+    class Student {
+
+        @Id
+        Long id;
+
+        @ManyToMany
+        @JoinTable(
+            name = "course_like",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+        Set&lt;Course&gt; likedCourses;
+    }
+
+    @Entity
+    class Course {
+
+        @Id
+        Long id;
+
+        @ManyToMany(mappedBy = "likedCourses")
+        Set&lt;Student&gt; likes;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The new association is in this case owned by the student.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_composite_key">3.2.2. Composite Key</h4>
+<div class="listingblock">
+<div class="title">Example Composite Key</div>
+<div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">    @Embeddable
+    class CourseRatingKey implements Serializable {
+
+        @Column(name = "student_id")
+        Long studentId;
+
+        @Column(name = "course_id")
+        Long courseId;
+
+        // standard constructors, getters, and setters
+        // hashcode and equals implementation
+    }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example Using a Composite Key</div>
+<div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">    @Entity
+    class CourseRating {
+
+        @EmbeddedId             //Could be a normal @Id
+        CourseRatingKey id;     //Long id;
+
+        @ManyToOne
+        @MapsId("student_id")   //This would then bin unnecessary
+        @JoinColumn(name = "student_id")
+        Student student;
+
+        @ManyToOne
+        @MapsId("course_id")    //This would then bin unnecessary
+        @JoinColumn(name = "course_id")
+        Course course;
+
+        int rating;
+    }
+
+    class Student {
+        @OneToMany(mappedBy = "student")
+        Set&lt;CourseRating&gt; ratings;
+    }
+
+    class Course {
+        @OneToMany(mappedBy = "course")
+        Set&lt;CourseRating&gt; ratings;
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jpql">3.3. JPQL</h3>
 <div class="paragraph">
 <p>Java Persistance Query Language</p>
 </div>
@@ -933,7 +1062,7 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_named_query">2.3. Named Query</h3>
+<h3 id="_named_query">3.4. Named Query</h3>
 <div class="listingblock">
 <div class="title">Example for NamedQueries</div>
 <div class="content">
@@ -969,7 +1098,7 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enitiy_manager">2.4. Enitiy Manager</h3>
+<h3 id="_enitiy_manager">3.5. Enitiy Manager</h3>
 <div class="paragraph">
 <p>Example for creating a Entity Manager</p>
 </div>
@@ -990,7 +1119,7 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_crud">3. CRUD</h2>
+<h2 id="_crud">4. CRUD</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1052,10 +1181,10 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_rest">4. REST</h2>
+<h2 id="_rest">5. REST</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_http_methods">4.1. Http Methods</h3>
+<h3 id="_http_methods">5.1. Http Methods</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1090,7 +1219,7 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples_a_restendpoint">4.2. Examples a RestEndpoint</h3>
+<h3 id="_examples_a_restendpoint">5.2. Examples a RestEndpoint</h3>
 <div class="listingblock">
 <div class="title">Common Inports for a RestEndpoint</div>
 <div class="content">
@@ -1153,7 +1282,7 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples_for_a_restclient">4.3. Examples for a RestClient</h3>
+<h3 id="_examples_for_a_restclient">5.3. Examples for a RestClient</h3>
 <div class="listingblock">
 <div class="title">Exmaple for a get in a Java SE client</div>
 <div class="content">
@@ -1171,17 +1300,17 @@ private Address address;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_technologies">5. Technologies</h2>
+<h2 id="_technologies">6. Technologies</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_jakarta_ee">5.1. Jakarta EE</h3>
+<h3 id="_jakarta_ee">6.1. Jakarta EE</h3>
 <div class="paragraph">
 <p>Good Source:<br>
 <a href="https://eclipse-ee4j.github.io/jakartaee-tutorial/" class="bare">https://eclipse-ee4j.github.io/jakartaee-tutorial/</a></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit">5.2. Junit</h3>
+<h3 id="_junit">6.2. Junit</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Method Anotations</caption>
 <colgroup>
@@ -1306,7 +1435,7 @@ private Address address;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-12-11 20:34:57 +0100
+Last updated 2020-01-06 12:56:31 +0100
 </div>
 </div>
 </body>

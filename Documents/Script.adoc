@@ -225,7 +225,17 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
         }
     }
 ----
+== CDI
+=== Context Dependency Injection 
+CDI is part of JavaBeans it can be configured in the beans.xml file.
 
+With the @Inject the cdi can create a contextual instance of the Object / Class you want to have.
+
+* Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requScop)
+
+* Constructor injection point (Field gets initialized in the constructor using cdi):  @Inject private ScopesBean(DependentScope){this.dependentScope = dependentScope;}
+
+* Method injection point is the same as Constructor method.
 
 == JPA
 JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.
