@@ -1,9 +1,9 @@
 = Script: NVS 4
 
 // Metadata
-:author: GeorgSEng
+:author: GeorgSeng
 :date: 2019-12-07
-:revision:  1.0
+:revision:  1.1
 // Settings
 :source-highlighter: coderay
 :icons: font
@@ -34,7 +34,7 @@ For Example:
 === Configure Data Source & and Drivers
 
 |===
-| Option | Input
+| *Option* | *Input*
 
 | Driver | Apache Derby (Remote)
 
@@ -69,7 +69,7 @@ demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityMa
 
 image::Project_Structure.png[]
 
-* The source code is usually in 3 subfolders of the main folder *at.htl.project_Name* Folder. The subfolders are *business, model, rest*.
+* The source code is usually in 3 subdirectory of the main folder *at.htl.project_Name* Folder. The subdirectory are *business, model, rest*.
 
 * In the *business folder* is the *InitBean.java* which 
 contains the init method for the Application server.
@@ -78,9 +78,9 @@ contains the init method for the Application server.
 
 * In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
 
-* For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subfolder of the project's root directory.
+* For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subdirectory of the project's root directory.
 
-* The *resources folder* which is also a subfolder of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
+* The *resources folder* which is also a subdirectory of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
 
 
 === XML
@@ -231,7 +231,7 @@ CDI is part of JavaBeans it can be configured in the beans.xml file.
 
 With the @Inject the cdi can create a contextual instance of the Object / Class you want to have.
 
-* Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requScop)
+* Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requestScop)
 
 * Constructor injection point (Field gets initialized in the constructor using cdi):  @Inject private ScopesBean(DependentScope){this.dependentScope = dependentScope;}
 
@@ -271,6 +271,7 @@ a|
 ----
 @Entity
 ----
+
 | makes a class a entity
 
 a|
@@ -380,7 +381,7 @@ private Address address;
 
 === ManyToMany Relationship
 
-There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customaizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.
+There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.
 
 ==== Auto Generated Table
 
@@ -485,9 +486,9 @@ Query:
     }
 ----
 
-Exmple for a Responde Obect:
+Example for a Response Object:
 
-.Example for Query Responde Class
+.Example for Query Response Class
 [source, java]
 ----
     public class AwesomePeopleDetail {
@@ -505,9 +506,9 @@ Exmple for a Responde Obect:
     }
 ----
 
-Exmple for saving Respone in a Tuble:
+Example for saving Response in a Tuple:
 
-.Example for a Tuble Responde
+.Example for a Tuple Response
 [source, Java]
 ----
     private static void secondQuery(EntityManager em) {
@@ -558,7 +559,7 @@ Exmple for saving Respone in a Tuble:
 Good Sources:
 https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 
-=== Enitiy Manager
+=== Entity Manager
 
 Example for creating a Entity Manager
 
@@ -630,7 +631,7 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 
 === Examples a RestEndpoint
 
-.Common Inports for a RestEndpoint
+.Common Imports for a RestEndpoint
 [source, java]
 ----
     import javax.annotation.PostConstruct;
@@ -692,7 +693,7 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 
 === Examples for a RestClient
 
-.Exmaple for a get in a Java SE client
+.Example for a get in a Java SE client
 [source, java]
 ----
     //import javax.ws.rs.* //core or client;
@@ -705,36 +706,46 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
     System.out.println("Request: " + payload);
 ----
 
+.Example Returning a URI in the Request
+[source, java]
+----
+    public Response foo(){
+        URI uri = info.getAbsolutePathBuilder().path("/" 
+            newCourseType.getId()).build();
+        return Response.created(uri).build();
+    } 
+----
+
 == Technologies
 
 === Jakarta EE
 Good Source:
 https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
-=== Junit
+=== JUnit
 
-.Method Anotations
+.Method Annotations
 |===
-|tag | Description
-a| @Test | Turns a public method into a JUnit test case.
-a| @Before | Method to run before every test case
-a| @After | Method to run after every test case
-a| @BeforeClass | Method to run once, before any test cases haverun
-a| @AfterClass | Method to run once, after all test cases have run
+| *Tag* | *Description*
+| @Test | Turns a public method into a JUnit test case.
+| @Before | Method to run before every test case
+| @After | Method to run after every test case
+| @BeforeClass | Method to run once, before any test cases have run
+| @AfterClass | Method to run once, after all test cases have run
 |===
 
 .Assert Methods
 |===
-|Method | Description
-a| assertTrue(test) | fails if the Boolean test is false
-a| assertFalse(test) | fails if the Boolean test is true
-a| assertEquals(expected, actual) | fails if the values are not equal
-a| assertSame(expected, actual) | fails if the values are not the same (by ==)haverun
-a| assertNotSame(expected, actual) | fails if the values are the same (by ==)
-a| assertNull(value) | fails if the given value is notnull
-a| assertNotNull(value) | fails if the given value is null
-a| fail() | causes current test to immediately fail
-a| assertEquals(“message”, expected, actual) | Each method can also be passed a string to display if it fails
+| Method | Description
+| assertTrue(test) | fails if the Boolean test is false
+| assertFalse(test) | fails if the Boolean test is true
+| assertEquals(expected, actual) | fails if the values are not equal
+| assertSame(expected, actual) | fails if the values are not the same (by ==) have run
+| assertNotSame(expected, actual) | fails if the values are the same (by ==)
+| assertNull(value) | fails if the given value is not null
+| assertNotNull(value) | fails if the given value is null
+| fail() | causes current test to immediately fail
+| assertEquals(“message”, expected, actual) | Each method can also be passed a string to display if it fails
 |===
 
 Good Source:
@@ -742,3 +753,14 @@ https://www.javatpoint.com/
 == AsciiDoc
 
 Great
+
+== Linux CommandLine 
+
+|=== 
+| *Command* | *Description*
+| ll | list all files and folders
+| chmod | change mode of a file
+| chown | change user rights on a folder
+
+|===
+
