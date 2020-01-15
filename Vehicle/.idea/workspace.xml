@@ -7,9 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcb3b583-58e0-447b-a2a6-16df30c76b0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../demoTest101/src/main/java/at/htl/demoTest101/rest/msEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PersonReste/src/main/java/at/htl/person/rest/PersonEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PersonReste/src/main/java/at/htl/person/rest/PersonEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserAdministration/.idea/UserAdministration.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserAdministration/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UserAdministration/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserAdministration/UserAdministration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../UserAdministration/UserAdministration.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserAdministration/src/main/resources/META-INF" beforeDir="false" afterPath="$PROJECT_DIR$/../UserAdministration/src/main/resources/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +190,7 @@
       <workItem from="1575927167942" duration="824000" />
       <workItem from="1575964535505" duration="598000" />
       <workItem from="1575981275989" duration="1768000" />
+      <workItem from="1578567133799" duration="10000" />
     </task>
     <servers />
   </component>

@@ -7,10 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d038273-0617-47ba-8fd5-2ad1fcb80f77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RestPrimer-st/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +38,11 @@
   </component>
   <component name="ProjectId" id="1RNSZ6MEr2zXRyMUSR4TDos5tLu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -56,18 +59,6 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 17.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
@@ -143,6 +134,18 @@
       </method>
     </configuration>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -159,6 +162,8 @@
       <workItem from="1574345818042" duration="163000" />
       <workItem from="1574543349907" duration="634000" />
       <workItem from="1574595955370" duration="165000" />
+      <workItem from="1577812474793" duration="195000" />
+      <workItem from="1578330208226" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="Fix bug in some Methods">
       <created>1574596075982</created>
@@ -189,5 +194,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix bug in some Methods" />
     <option name="LAST_COMMIT_MESSAGE" value="Fix bug in some Methods" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2458" y="755" key="#Project_Structure" timestamp="1578330215606">
+      <screen x="46" y="27" width="3794" height="2133" />
+    </state>
+    <state x="2458" y="755" key="#Project_Structure/46.27.3794.2133/3840.432.1920.1080@46.27.3794.2133" timestamp="1578330215606" />
   </component>
 </project>
