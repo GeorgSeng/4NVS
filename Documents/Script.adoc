@@ -3,24 +3,72 @@
 // Metadata
 :author: GeorgSeng
 :date: 2019-12-07
-:revision:  1.1
+:revision:  1.5
 // Settings
 :source-highlighter: coderay
 :icons: font
 :sectnums:    // Nummerierung der Überschriften / section numbering
 :pdfwidth: pdfwidth=80vw
 // Refs:
-//:imagesdir: /home/georg/Documents/4NVS/Documents/images
-:imagesdir: images
+:imagesdir: /home/georg/Documents/4NVS/Documents/images
+//:imagesdir: images
 //:sourcedir-code: src/main/java/at/htl/jdbcprimer
 //:sourcedir-test: src/test/java/at/htl/jdbcprimer
 
  
 Version: {revision}
 
-
+//General
 == General
 
+The Document Contains:  
+
+[lines=5]
+. *General*
+.. Create a Project
+.. Pom.xml
+.. Config Data Source DerbyDB 
+.. Project Structure
+... Repository
+... Entity
+... RestConfig
+... InitBean
+... Request.http
+. *CDI*
+.. Context Dependency Injection 
+. *JPA*
+.. Annotations 
+.. ManyToMany Relationship
+.. Auto Generated Table
+.. Composite Key
+.. Sequence as Key
+. *JPQL*
+.. CreateQuery
+.. Response Object
+.. Response Tuple
+.. Named Query
+.. Entity Manager
+. *CRUDE*
+.. Types
+.. Examples
+. *REST*
+.. HTTP Methods
+.. RestEndpoint GET
+.. POST
+.. RestClient
+. *Technologies*
+.. Jakarta EE
+.. JUNIT 4
+... Method Annotations
+... Assert Methods
+. *AsciiDoc*
+. *Linux*
+.. Terminal
+. *Hints*
+.. Convert String to LocalDate
+
+
+//
 === Create Project
 
 Create *Maven* Project with Intellij.
@@ -31,70 +79,7 @@ For Example:
     <artifactId>PersonRest</artifactId>
 ----
 
-=== Configure Data Source & and Drivers
-
-|===
-| *Option* | *Input*
-
-| Driver | Apache Derby (Remote)
-
-| Host | localhost
-
-| Port | 1527
-
-| User | app
-
-| Password | app
-
-| Database | db
-
-| URL | jdbc:derby://localhost:1527/db
-
-|===
-
-Good Source:
-https://www.tutorialspoint.com/intellij_idea/index.htm
-
-=== Start DerbyDB
-
-.Start DB:
-[source, shell]
-----
-demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager
-----
-
-:hardbreaks:
-
-=== Project Structure
-
-image::Project_Structure.png[]
-
-* The source code is usually in 3 subdirectory of the main folder *at.htl.project_Name* Folder. The subdirectory are *business, model, rest*.
-
-* In the *business folder* is the *InitBean.java* which 
-contains the init method for the Application server.
-
-* In the *model folder* are the *Entities*.
-
-* In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
-
-* For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subdirectory of the project's root directory.
-
-* The *resources folder* which is also a subdirectory of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
-
-
-=== XML
-For xml we have to declare the entity as: 
-
-.Example for Entity with XML
-[source, Java]
-----
-    import javax.xml.bind.annotation.XmlRootElement;
-
-    @XmlRootElement
-    public class Vehicle {}
-----
-
+//
 === Pom.xml
 .Pom.xml
 [source, XML]
@@ -150,6 +135,77 @@ For xml we have to declare the entity as:
     <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
 ----
 
+//
+=== Configure Data Source & and Drivers
+
+*Start DerbyDB*
+
+.Start DB:
+[source, shell]
+----
+demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager
+----
+
+*Configure in IJ*
+|===
+| *Option* | *Input*
+
+| Driver | Apache Derby (Remote)
+
+| Host | localhost
+
+| Port | 1527
+
+| User | app
+
+| Password | app
+
+| Database | db
+
+| URL | jdbc:derby://localhost:1527/db
+
+|===
+
+Good Source:
+https://www.tutorialspoint.com/intellij_idea/index.htm
+
+
+:hardbreaks:
+
+//ProjectStructure
+=== Project Structure
+
+//image::Project_Structure.png[]
+
+Source/main/java/at/htl/[ProjectName]/::
+business/
+model/
+rest/
+
+
+Source/main/resources/::
+Files.csv
+META-INF/ :::
+    persistence.xml
+
+
+//
+* The source code is usually in 3 subdirectory of the main folder *at.htl.project_Name* Folder. The subdirectory are *business, model, rest*.
+
+* In the *business folder* is the *InitBean.java* which 
+contains the init method for the Application server.
+
+* In the *model folder* are the *Entities*.
+
+* In the *rest folder* is the *Endpoints.java* and the *RestConfig.java* which configures the rest service.
+
+* For testing the REST service a *request.http* can be created this file should be placed in the *requests folder* which is a subdirectory of the project's root directory.
+
+* The *resources folder* which is also a subdirectory of the project's root directory is for resources. Like: *csv files* or the folder *META-INF* which contains the *persistance.xml*.
+
+//
+==== Repository
+
 .Example for a Repository
 [source, JAVA]
 ----
@@ -162,38 +218,43 @@ public class CourseRepository {
 }
 ----
 
-=== Request
+//
+==== Entity
 
-.Examples for request.http
-[source, html]
+.Example Person
+[source, Java]
 ----
-###
+    package at.htl.person.model;
+    import javax.persistence.*;
 
-    POST http://localhost:8080/person/api/person
-    Content-Type: application/json
+    @Entity
+    //@Entity(name = "Person")
+    public class Person {
+        @Transient
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    [
-    {
-    "dob": "2001-10-07",
-    "name": "Chiara"
-    },
-    {
-    "dob": "2002-03-23",
-    "name": "Christoph"
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Column(name = "customer_name")
+        private String name;
     }
-    ]
-
-    ###
-
-    GET http://localhost:8080/person/api/person/demo
-    Accept: application/xml
-
-    ###
-
-    GET http://localhost:8080/person/api/person?name=Susi
 ----
 
-=== Rest Config
+//
+===== XML-Root
+For xml we have to declare the entity as: 
+
+.Example for Entity with XML+
+[source, Java]
+----
+    import javax.xml.bind.annotation.XmlRootElement;
+
+    @XmlRootElement
+    public class Vehicle {}
+----
+
+//
+==== Rest Config
 
 .Rest Config File
 [source, java]
@@ -209,7 +270,8 @@ public class CourseRepository {
     }
 ----
 
-=== Read data from csv
+//
+==== InitBean (Read data from csv)
 
 Good Source:
 https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/
@@ -237,6 +299,40 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
         }
     }
 ----
+
+//
+==== Request.http
+
+.Examples for a POST in request.http
+[source, html]
+----
+    POST http://localhost:8080/person/api/person
+    Content-Type: application/json
+
+    [
+        {
+            "dob": "2001-10-07",
+            "name": "Chiara"
+        },
+        {
+            "dob": "2002-03-23",
+            "name": "Christoph"
+        }
+    ]
+----
+
+.Examples for GET in request.http
+[source, html]
+----
+    ### Get All as XML
+    GET http://localhost:8080/person/api/person/demo
+    Accept: application/xml
+
+    ### Get Susi
+    GET http://localhost:8080/person/api/person?name=Susi
+----
+
+//CDI
 == CDI
 === Context Dependency Injection 
 CDI is part of JavaBeans it can be configured in the beans.xml file.
@@ -249,32 +345,15 @@ With the @Inject the cdi can create a contextual instance of the Object / Class 
 
 * Method injection point is the same as Constructor method.
 
+
+//JPA
 == JPA
 JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.
 
-=== Entity
-.Example Person
-[source, Java]
-----
-    package at.htl.person.model;
-    import javax.persistence.*;
-
-    @Entity
-    //@Entity(name = "Person")
-    public class Person {
-        @Transient
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        @Column(name = "customer_name")
-        private String name;
-    }
-----
-
+The majority of imports is located in the fallowing package:
 *Source Package: import javax.persistence.**;
 
-.Annotations:
+.*Common JPA Annotations*
 |===
 |Annotation | Description
 
@@ -291,15 +370,18 @@ a|
 image::Column_options.png[]
 | options for fields / columns
 
-| @GeneratedValue(strategy = GenerationType.IDENTITY)
-| defines a auto generated key
-
 | @Transient
 | defines fields that should not be part of the entity
 
 | @Enumerated(EnumType.STRING)
   private EmploymentType empType;
 | defines what kind of datatype of a enum get stored in the db (by default int)
+
+|===
+
+.*JPA Relationship Annotations* 
+|===
+|Annotation | Description
 
 a|
 [source, Java]
@@ -310,13 +392,15 @@ cascade = CascadeType.Persist, orphanRemoval=true)
 private List<Bestellungsposition> bestellungspositionListe;
 ----
 | delete dependent children, when the parent is going to be 
-deleted (child-entites are orphans (=Waisen) then)
+deleted (child-entities are orphans (=Waisen) then)
+
 
 a|
 [source, Java]
 ----
 /*  Bestelposition */
 @ManyToOne
+@JoinColumn(name = "bestellung_id")
 private Bestellung bestellung;
 ----
 | the inverse part of the relationship
@@ -359,10 +443,12 @@ private Address address;
 
 |===
 
+//
 === ManyToMany Relationship
 
 There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.
 
+//
 ==== Auto Generated Table
 
 .Example Auto Generated Association Table
@@ -461,10 +547,10 @@ The new association is in this case owned by the student.
     }
 ----
 
-=== JPQL
+== JPQL
 Java Persistance Query Language
 
-Query:
+=== CreateQuery
 
 .Example for More Advanced Example
 [source, java]
@@ -480,7 +566,7 @@ Query:
     }
 ----
 
-Example for a Response Object:
+=== Response Object
 
 .Example for Query Response Class
 [source, java]
@@ -500,6 +586,7 @@ Example for a Response Object:
     }
 ----
 
+=== Response Tuple
 Example for saving Response in a Tuple:
 
 .Example for a Tuple Response
@@ -549,10 +636,6 @@ Example for saving Response in a Tuple:
     }
 ----
 
-
-Good Sources:
-https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
-
 === Entity Manager
 
 Example for creating a Entity Manager
@@ -570,6 +653,9 @@ Example for creating a Entity Manager
     em.close();
 ----
 
+
+Good Sources:
+https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
 
 == CRUD
 * Create: persist entity
@@ -609,7 +695,7 @@ Example for creating a Entity Manager
 //<<< //page brake
 == REST
 
-=== Http Methods
+=== HTTP Methods
 
 * Get (Read: all or a specific resource)
 * Post (Create or Update: without a specific ID)
@@ -660,6 +746,8 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
                     .getResultList();
         }
 ----
+
+=== POST
 
 .Example for a Post
 [source, java]
@@ -716,9 +804,9 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 Good Source:
 https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
-=== JUnit
+=== JUnit 4
 
-.Method Annotations
+.*Method Annotations*
 |===
 | *Tag* | *Description*
 | @Test | Turns a public method into a JUnit test case.
@@ -728,7 +816,7 @@ https://eclipse-ee4j.github.io/jakartaee-tutorial/
 | @AfterClass | Method to run once, after all test cases have run
 |===
 
-.Assert Methods
+.*Assert Methods*
 |===
 | Method | Description
 | assertTrue(test) | fails if the Boolean test is false
@@ -744,9 +832,11 @@ https://eclipse-ee4j.github.io/jakartaee-tutorial/
 
 Good Source:
 https://www.javatpoint.com/
+
 == AsciiDoc
 
-Great
+Great Source:
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 
 == Linux 
 
@@ -759,4 +849,44 @@ Great
 | chown | change user rights on a folder
 
 |===
+
+== Hints
+
+=== Convert String to LocalDate
+
+.*Example Problem*
+[source, JAVA]
+----
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yy");
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --> 2088-07-03
+----
+
+When converting a String with a two-digit-year to a LocalDate variable, the base of the convertion is 2000 so you get 2088 as result.
+
+.*Example Solution*
+[source, java]
+----
+To prevent this, you can subtract 100 years in the DateTimeFormatter-Object
+
+DateTimeFormatter dtf = new DateTimeFormatterBuilder()
+        .appendPattern("dd-MM-")
+        .appendValueReduced(ChronoField.YEAR, 2, 2, 1900)
+        .toFormatter();
+
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --> 1988-07-03
+----
+Now the correct date is displayed
+
+Source:
+
+- https://stackoverflow.com/a/38354449
+- https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html
 
