@@ -139,7 +139,7 @@ For xml we have to declare the entity as:
 ----
 
 .Useful Package sources
-[source, xml]
+[source, XML]
 ----
                             <!-- Useful Sources -->
     <!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -148,6 +148,18 @@ For xml we have to declare the entity as:
     <!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
     <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
     <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+----
+
+.Example for a Repository
+[source, JAVA]
+----
+@Transactional
+public class CourseRepository {
+
+
+    @PersistenceContext
+    EntityManager em;
+}
 ----
 
 === Request
@@ -266,59 +278,27 @@ JPA is a concept that can be implemented like a interface, the current reference
 |===
 |Annotation | Description
 
-a|
-[source, Java]
-----
-@Entity
-----
+| @Entity | makes a class a entity
 
-| makes a class a entity
+| @Entity(name = "Person") | defines the table name of the entity
 
-a|
-[source, Java]
-----
-@Entity(name = "Person")
-----
-| defines the table name of the entity
+| @Id | defines the Pk of a table entity
 
-a|
-[source, Java]
-----
-@Id
-----
-| defines the Pk of a table entity
-
-a|
-[source, Java]
-----
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-----
+| @GeneratedValue(strategy = GenerationType.IDENTITY) 
 | defines a auto generated key
 
 a|
 image::Column_options.png[]
 | options for fields / columns
 
-a|
-[source, Java]
-----
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-----
+| @GeneratedValue(strategy = GenerationType.IDENTITY)
 | defines a auto generated key
 
-a|
-[source, Java]
-----
-@Transient
-----
+| @Transient
 | defines fields that should not be part of the entity
 
-a|
-[source, Java]
-----
-@Enumerated(EnumType.STRING)
-private EmploymentType empType;
-----
+| @Enumerated(EnumType.STRING)
+  private EmploymentType empType;
 | defines what kind of datatype of a enum get stored in the db (by default int)
 
 a|
@@ -464,6 +444,20 @@ The new association is in this case owned by the student.
     class Course {
         @OneToMany(mappedBy = "course")
         Set<CourseRating> ratings;
+    }
+----
+
+=== Sequence as Key
+.Example Sequence as Primary Key
+[source, JAVA]
+----
+    @Entity
+    @Table(name = "XY_MY_OBJECT")
+    @SequenceGenerator(name="xy_my_object_seq", initialValue=500, allocationSize=1)
+    public class MyObject {
+
+        @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="xy_my_object_seq")
+        @Id Long id;
     }
 ----
 
@@ -709,7 +703,7 @@ https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
 .Example Returning a URI in the Request
 [source, java]
 ----
-    public Response foo(){
+    public Response foo(@Context UriInfo uri){
         URI uri = info.getAbsolutePathBuilder().path("/" 
             newCourseType.getId()).build();
         return Response.created(uri).build();
@@ -754,7 +748,9 @@ https://www.javatpoint.com/
 
 Great
 
-== Linux CommandLine 
+== Linux 
+
+=== Terminal
 
 |=== 
 | *Command* | *Description*
