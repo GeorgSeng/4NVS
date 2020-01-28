@@ -304,7 +304,7 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
 ==== Request.http
 
 .Examples for a POST in request.http
-[source, html]
+[source, HTTP]
 ----
     POST http://localhost:8080/person/api/person
     Content-Type: application/json
@@ -322,7 +322,7 @@ https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-fol
 ----
 
 .Examples for GET in request.http
-[source, html]
+[source, HTTP]
 ----
     ### Get All as XML
     GET http://localhost:8080/person/api/person/demo
