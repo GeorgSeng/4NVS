@@ -16,6 +16,8 @@
 | demoTest101-st | Practice for Test | 11-Dec-2019 |  | X | --""-- |
 | UserAdministration | Practice for Test | 08-Jan-2020 | X |  | --""-- |
 | getting-started | Hello World Quarkus | 27-Jan-2020 | X |  | Quarkus |
+| demo-websocket | Chat using Docker | 26-Feb-2020 | | | Quarkus |
+| demo-docker | Hello Wolrd Docker | 27-Feb-2020 | X | | | Quarkus |
 
 ### Documents
 
