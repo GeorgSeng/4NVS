@@ -436,141 +436,97 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article">
+<body class="article data-line-1">
 <div id="header">
 <h1>Script: NVS 4</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_general">1. General</a>
+<ul class="sectlevel2">
+<li><a href="#_create_project">1.1. Create Project</a></li>
+<li><a href="#_pom_xml">1.2. Pom.xml</a></li>
+<li><a href="#_configure_data_source_and_drivers">1.3. Configure Data Source &amp; and Drivers</a></li>
+<li><a href="#_project_structure">1.4. Project Structure</a></li>
+</ul>
+</li>
+<li><a href="#_cdi">2. CDI</a>
+<ul class="sectlevel2">
+<li><a href="#_context_dependency_injection">2.1. Context Dependency Injection</a></li>
+</ul>
+</li>
+<li><a href="#_jpa">3. JPA</a>
+<ul class="sectlevel2">
+<li><a href="#_manytomany_relationship">3.1. ManyToMany Relationship</a></li>
+<li><a href="#_sequence_as_key">3.2. Sequence as Key</a></li>
+</ul>
+</li>
+<li><a href="#_jpql">4. JPQL</a>
+<ul class="sectlevel2">
+<li><a href="#_createquery">4.1. CreateQuery</a></li>
+<li><a href="#_response_object">4.2. Response Object</a></li>
+<li><a href="#_response_tuple">4.3. Response Tuple</a></li>
+<li><a href="#_named_query">4.4. Named Query</a></li>
+<li><a href="#_entity_manager">4.5. Entity Manager</a></li>
+</ul>
+</li>
+<li><a href="#_crud">5. CRUD</a></li>
+<li><a href="#_rest">6. REST</a>
+<ul class="sectlevel2">
+<li><a href="#_http_methods">6.1. HTTP Methods</a></li>
+<li><a href="#_examples_a_restendpoint">6.2. Examples a RestEndpoint</a></li>
+<li><a href="#_post">6.3. POST</a></li>
+<li><a href="#_examples_for_a_restclient">6.4. Examples for a RestClient</a></li>
+</ul>
+</li>
+<li><a href="#_technologies">7. Technologies</a>
+<ul class="sectlevel2">
+<li><a href="#_jakarta_ee">7.1. Jakarta EE</a></li>
+<li><a href="#_junit_4">7.2. JUnit 4</a></li>
+</ul>
+</li>
+<li><a href="#_asciidoc">8. AsciiDoc</a></li>
+<li><a href="#_linux">9. Linux</a>
+<ul class="sectlevel2">
+<li><a href="#_terminal">9.1. Terminal</a></li>
+</ul>
+</li>
+<li><a href="#_hints">10. Hints</a>
+<ul class="sectlevel2">
+<li><a href="#_convert_string_to_localdate">10.1. Convert String to LocalDate</a></li>
+</ul>
+</li>
+<li><a href="#_docker">Docker</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Version: 1.0</p>
+<div class="paragraph data-line-22">
+<p>Version: 1.5</p>
 </div>
 </div>
 </div>
-<div class="sect1">
+<div class="sect1 data-line-26">
 <h2 id="_general">1. General</h2>
 <div class="sectionbody">
-<div class="sect2">
+<div class="sect2 data-line-76">
 <h3 id="_create_project">1.1. Create Project</h3>
-<div class="paragraph">
+<div class="paragraph data-line-78">
 <p>Create <strong>Maven</strong> Project with Intellij.
 For Example:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-81">
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">    &lt;groupId&gt;at.htl&lt;/groupId&gt;
     &lt;artifactId&gt;PersonRest&lt;/artifactId&gt;</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_configure_data_source_and_drivers">1.2. Configure Data Source &amp; and Drivers</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Input</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Driver</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Derby (Remote)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Host</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Port</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1527</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">app</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">app</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">db</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:derby://localhost:1527/db</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Good Source:
-<a href="https://www.tutorialspoint.com/intellij_idea/index.htm" class="bare">https://www.tutorialspoint.com/intellij_idea/index.htm</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_start_derbydb">1.3. Start DerbyDB</h3>
-<div class="listingblock">
-<div class="title">Start DB:</div>
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_project_structure">1.4. Project Structure</h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/Project_Structure.png" alt="Project Structure">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The source code is usually in 3 subfolders of the main folder <strong>at.htl.project_Name</strong> Folder. The subfolders are <strong>business, model, rest</strong>.</p>
-</li>
-<li>
-<p>In the <strong>business folder</strong> is the <strong>InitBean.java</strong> which<br>
-contains the init method for the Application server.</p>
-</li>
-<li>
-<p>In the <strong>model folder</strong> are the <strong>Entities</strong>.</p>
-</li>
-<li>
-<p>In the <strong>rest folder</strong> is the <strong>Endpoints.java</strong> and the <strong>RestConfig.java</strong> which configures the rest service.</p>
-</li>
-<li>
-<p>For testing the REST service a <strong>request.http</strong> can be created this file should be placed in the <strong>requests folder</strong> which is a subfolder of the project&#8217;s root directory.</p>
-</li>
-<li>
-<p>The <strong>resources folder</strong> which is also a subfolder of the project&#8217;s root directory is for resources. Like: <strong>csv files</strong> or the folder <strong>META-INF</strong> which contains the <strong>persistance.xml</strong>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_xml">1.5. XML</h3>
-<div class="paragraph">
-<p>For xml we have to declare the entity as:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example for Entity with XML</div>
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">    import javax.xml.bind.annotation.XmlRootElement;
-
-    @XmlRootElement
-    public class Vehicle {}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_pom_xml">1.6. Pom.xml</h3>
-<div class="listingblock">
+<div class="sect2 data-line-87">
+<h3 id="_pom_xml">1.2. Pom.xml</h3>
+<div class="listingblock data-line-90">
 <div class="title">Pom.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-XML" data-lang="XML">    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -612,10 +568,10 @@ contains the init method for the Application server.</p>
     &lt;/project&gt;</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-132">
 <div class="title">Useful Package sources</div>
 <div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">                            &lt;!-- Useful Sources --&gt;
+<pre class="highlight"><code class="language-XML" data-lang="XML">                            &lt;!-- Useful Sources --&gt;
     &lt;!-- https://mvnrepository.com/artifact/junit/junit --&gt;
     &lt;!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client --&gt;
     &lt;!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-processing --&gt;
@@ -625,41 +581,169 @@ contains the init method for the Application server.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_request">1.7. Request</h3>
-<div class="listingblock">
-<div class="title">Examples for request.http</div>
+<div class="sect2 data-line-143">
+<h3 id="_configure_data_source_and_drivers">1.3. Configure Data Source &amp; and Drivers</h3>
+<div class="paragraph data-line-145">
+<p><strong>Start DerbyDB</strong></p>
+</div>
+<div class="listingblock data-line-149">
+<div class="title">Start DB:</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">###
+<pre class="highlight"><code class="language-shell" data-lang="shell">demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityManager</code></pre>
+</div>
+</div>
+<div class="paragraph data-line-153">
+<p><strong>Configure in IJ</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch data-line-154">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Option</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Input</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Driver</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Derby (Remote)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1527</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">db</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:derby://localhost:1527/db</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph data-line-173">
+<p>Good Source:
+<a href="https://www.tutorialspoint.com/intellij_idea/index.htm" class="bare">https://www.tutorialspoint.com/intellij_idea/index.htm</a></p>
+</div>
+</div>
+<div class="sect2 data-line-180">
+<h3 id="_project_structure">1.4. Project Structure</h3>
+<div class="dlist data-line-184">
+<dl>
+<dt class="hdlist1">Source/main/java/at/htl/[ProjectName]/</dt>
+<dd>
+<p>business/<br>
+model/<br>
+rest/</p>
+</dd>
+<dt class="hdlist1">Source/main/resources/</dt>
+<dd>
+<p>Files.csv</p>
+<div class="dlist data-line-192">
+<dl>
+<dt class="hdlist1">META-INF/ </dt>
+<dd>
+<p>persistence.xml</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="ulist data-line-197">
+<ul>
+<li class="data-line-197">
+<p>The source code is usually in 3 subdirectory of the main folder <strong>at.htl.project_Name</strong> Folder. The subdirectory are <strong>business, model, rest</strong>.</p>
+</li>
+<li class="data-line-199">
+<p>In the <strong>business folder</strong> is the <strong>InitBean.java</strong> which<br>
+contains the init method for the Application server.</p>
+</li>
+<li class="data-line-202">
+<p>In the <strong>model folder</strong> are the <strong>Entities</strong>.</p>
+</li>
+<li class="data-line-204">
+<p>In the <strong>rest folder</strong> is the <strong>Endpoints.java</strong> and the <strong>RestConfig.java</strong> which configures the rest service.</p>
+</li>
+<li class="data-line-206">
+<p>For testing the REST service a <strong>request.http</strong> can be created this file should be placed in the <strong>requests folder</strong> which is a subdirectory of the project&#8217;s root directory.</p>
+</li>
+<li class="data-line-208">
+<p>The <strong>resources folder</strong> which is also a subdirectory of the project&#8217;s root directory is for resources. Like: <strong>csv files</strong> or the folder <strong>META-INF</strong> which contains the <strong>persistance.xml</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="sect3 data-line-211">
+<h4 id="_repository">1.4.1. Repository</h4>
+<div class="listingblock data-line-215">
+<div class="title">Example for a Repository</div>
+<div class="content">
+<pre class="highlight"><code class="language-JAVA" data-lang="JAVA">@Transactional
+public class CourseRepository {
 
-    POST http://localhost:8080/person/api/person
-    Content-Type: application/json
 
-    [
-    {
-    "dob": "2001-10-07",
-    "name": "Chiara"
-    },
-    {
-    "dob": "2002-03-23",
-    "name": "Christoph"
-    }
-    ]
-
-    ###
-
-    GET http://localhost:8080/person/api/person/demo
-    Accept: application/xml
-
-    ###
-
-    GET http://localhost:8080/person/api/person?name=Susi</code></pre>
+    @PersistenceContext
+    EntityManager em;
+}</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_rest_config">1.8. Rest Config</h3>
-<div class="listingblock">
+<div class="sect3 data-line-226">
+<h4 id="_entity">1.4.2. Entity</h4>
+<div class="listingblock data-line-230">
+<div class="title">Example Person</div>
+<div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">    package at.htl.person.model;
+    import javax.persistence.*;
+
+    @Entity
+    //@Entity(name = "Person")
+    public class Person {
+        @Transient
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Column(name = "customer_name")
+        private String name;
+    }</code></pre>
+</div>
+</div>
+<div class="sect4 data-line-248">
+<h5 id="_xml_root">XML-Root</h5>
+<div class="paragraph data-line-249">
+<p>For xml we have to declare the entity as:</p>
+</div>
+<div class="listingblock data-line-253">
+<div class="title">Example for Entity with XML+</div>
+<div class="content">
+<pre class="highlight"><code class="language-Java" data-lang="Java">    import javax.xml.bind.annotation.XmlRootElement;
+
+    @XmlRootElement
+    public class Vehicle {}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-261">
+<h4 id="_rest_config">1.4.3. Rest Config</h4>
+<div class="listingblock data-line-265">
 <div class="title">Rest Config File</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    package at.htl.vehicle.rest;
@@ -674,13 +758,13 @@ contains the init method for the Application server.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_read_data_from_csv">1.9. Read data from csv</h3>
-<div class="paragraph">
+<div class="sect3 data-line-278">
+<h4 id="_initbean_read_data_from_csv">1.4.4. InitBean (Read data from csv)</h4>
+<div class="paragraph data-line-280">
 <p>Good Source:<br>
 <a href="https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/" class="bare">https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/</a></p>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-285">
 <div class="title">Example for read csv in InitBean</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    private void init(
@@ -705,28 +789,61 @@ contains the init method for the Application server.</p>
 </div>
 </div>
 </div>
+<div class="sect3 data-line-308">
+<h4 id="_request_http">1.4.5. Request.http</h4>
+<div class="listingblock data-line-312">
+<div class="title">Examples for a POST in request.http</div>
+<div class="content">
+<pre class="highlight"><code class="language-HTTP" data-lang="HTTP">    POST http://localhost:8080/person/api/person
+    Content-Type: application/json
+
+    [
+        {
+            "dob": "2001-10-07",
+            "name": "Chiara"
+        },
+        {
+            "dob": "2002-03-23",
+            "name": "Christoph"
+        }
+    ]</code></pre>
 </div>
 </div>
-<div class="sect1">
+<div class="listingblock data-line-330">
+<div class="title">Examples for GET in request.http</div>
+<div class="content">
+<pre class="highlight"><code class="language-HTTP" data-lang="HTTP">    ### Get All as XML
+    GET http://localhost:8080/person/api/person/demo
+    Accept: application/xml
+
+    ### Get Susi
+    GET http://localhost:8080/person/api/person?name=Susi</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-340">
 <h2 id="_cdi">2. CDI</h2>
 <div class="sectionbody">
-<div class="sect2">
+<div class="sect2 data-line-341">
 <h3 id="_context_dependency_injection">2.1. Context Dependency Injection</h3>
-<div class="paragraph">
+<div class="paragraph data-line-342">
 <p>CDI is part of JavaBeans it can be configured in the beans.xml file.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph data-line-344">
 <p>With the @Inject the cdi can create a contextual instance of the Object / Class you want to have.</p>
 </div>
-<div class="ulist">
+<div class="ulist data-line-346">
 <ul>
-<li>
-<p>Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requScop)</p>
+<li class="data-line-346">
+<p>Field injection type (most important): Request Context and Injected in a particular field (@Inject private RequestScope requestScop)</p>
 </li>
-<li>
+<li class="data-line-348">
 <p>Constructor injection point (Field gets initialized in the constructor using cdi):  @Inject private ScopesBean(DependentScope){this.dependentScope = dependentScope;}</p>
 </li>
-<li>
+<li class="data-line-350">
 <p>Method injection point is the same as Constructor method.</p>
 </li>
 </ul>
@@ -734,38 +851,66 @@ contains the init method for the Application server.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
+<div class="sect1 data-line-354">
 <h2 id="_jpa">3. JPA</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div class="paragraph data-line-355">
 <p>JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.</p>
 </div>
-<div class="sect2">
-<h3 id="_entity">3.1. Entity</h3>
-<div class="listingblock">
-<div class="title">Example Person</div>
+<div class="paragraph data-line-357">
+<p>The majority of imports is located in the fallowing package:<br>
+<strong>Source Package: import javax.persistence.</strong>*;</p>
+</div>
+<table class="tableblock frame-all grid-all stretch data-line-361">
+<caption class="title">Table 1. <strong>Common JPA Annotations</strong></caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Annotation</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Entity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">makes a class a entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Entity(name = "Person")</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines the table name of the entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines the Pk of a table entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@GeneratedValue(strategy = GenerationType.IDENTITY)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines a auto generated key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">    package at.htl.person.model;
-    import javax.persistence.*;
-
-    @Entity
-    //@Entity(name = "Person")
-    public class Person {
-        @Transient
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        @Column(name = "customer_name")
-        private String name;
-    }</code></pre>
+<img src="/home/georg/Documents/4NVS/Documents/images/Column_options.png" alt="Column options">
 </div>
-</div>
-<div class="paragraph">
-<p><strong>Source Package: import javax.persistence.</strong>*;</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Annotations:</caption>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">options for fields / columns</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Transient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines fields that should not be part of the entity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Enumerated(EnumType.STRING)<br>
+  private EmploymentType empType;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines what kind of datatype of a enum get stored in the db (by default int)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch data-line-387">
+<caption class="title">Table 2. <strong>JPA Relationship Annotations</strong></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -780,71 +925,6 @@ contains the init method for the Application server.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@Entity</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">makes a class a entity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@Entity(name = "Person")</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines the table name of the entity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@Id</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines the Pk of a table entity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@GeneratedValue(strategy = GenerationType.IDENTITY)</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines a auto generated key</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
-<div class="content">
-<img src="images/Column_options.png" alt="Column options">
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">options for fields / columns</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@GeneratedValue(strategy = GenerationType.IDENTITY)</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines a auto generated key</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@Transient</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines fields that should not be part of the entity</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-Java" data-lang="Java">@Enumerated(EnumType.STRING)
-private EmploymentType empType;</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defines what kind of datatype of a enum get stored in the db (by default int)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">/*  Bestellung */
 @OneToMany(mappedBy="bestellung",
 cascade = CascadeType.Persist, orphanRemoval=true)
@@ -852,13 +932,14 @@ private List&lt;Bestellungsposition&gt; bestellungspositionListe;</code></pre>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">delete dependent children, when the parent is going to be<br>
-deleted (child-entites are orphans (=Waisen) then)</p></td>
+deleted (child-entities are orphans (=Waisen) then)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">/*  Bestelposition */
 @ManyToOne
+@JoinColumn(name = "bestellung_id")
 private Bestellung bestellung;</code></pre>
 </div>
 </div></div></td>
@@ -904,15 +985,14 @@ private Address address;</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="sect2 data-line-451">
+<h3 id="_manytomany_relationship">3.1. ManyToMany Relationship</h3>
+<div class="paragraph data-line-453">
+<p>There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.</p>
 </div>
-<div class="sect2">
-<h3 id="_manytomany_relationship">3.2. ManyToMany Relationship</h3>
-<div class="paragraph">
-<p>There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customaizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.</p>
-</div>
-<div class="sect3">
-<h4 id="_auto_generated_table">3.2.1. Auto Generated Table</h4>
-<div class="listingblock">
+<div class="sect3 data-line-456">
+<h4 id="_auto_generated_table">3.1.1. Auto Generated Table</h4>
+<div class="listingblock data-line-460">
 <div class="title">Example Auto Generated Association Table</div>
 <div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">    @Entity
@@ -940,13 +1020,13 @@ private Address address;</code></pre>
     }</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph data-line-486">
 <p>The new association is in this case owned by the student.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_composite_key">3.2.2. Composite Key</h4>
-<div class="listingblock">
+<div class="sect3 data-line-488">
+<h4 id="_composite_key">3.1.2. Composite Key</h4>
+<div class="listingblock data-line-492">
 <div class="title">Example Composite Key</div>
 <div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">    @Embeddable
@@ -963,7 +1043,7 @@ private Address address;</code></pre>
     }</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-509">
 <div class="title">Example Using a Composite Key</div>
 <div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">    @Entity
@@ -998,15 +1078,33 @@ private Address address;</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jpql">3.3. JPQL</h3>
-<div class="paragraph">
+<div class="sect2 data-line-540">
+<h3 id="_sequence_as_key">3.2. Sequence as Key</h3>
+<div class="listingblock data-line-543">
+<div class="title">Example Sequence as Primary Key</div>
+<div class="content">
+<pre class="highlight"><code class="language-JAVA" data-lang="JAVA">    @Entity
+    @Table(name = "XY_MY_OBJECT")
+    @SequenceGenerator(name="xy_my_object_seq", initialValue=500, allocationSize=1)
+    public class MyObject {
+
+        @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="xy_my_object_seq")
+        @Id Long id;
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-554">
+<h2 id="_jpql">4. JPQL</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-555">
 <p>Java Persistance Query Language</p>
 </div>
-<div class="paragraph">
-<p>Query:</p>
-</div>
-<div class="listingblock">
+<div class="sect2 data-line-557">
+<h3 id="_createquery">4.1. CreateQuery</h3>
+<div class="listingblock data-line-561">
 <div class="title">Example for More Advanced Example</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    public void getStuff(){
@@ -1020,11 +1118,11 @@ private Address address;</code></pre>
     }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Exmple for a Responde Obect:</p>
 </div>
-<div class="listingblock">
-<div class="title">Example for Query Responde Class</div>
+<div class="sect2 data-line-573">
+<h3 id="_response_object">4.2. Response Object</h3>
+<div class="listingblock data-line-577">
+<div class="title">Example for Query Response Class</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    public class AwesomePeopleDetail {
 
@@ -1041,11 +1139,14 @@ private Address address;</code></pre>
     }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Exmple for saving Respone in a Tuble:</p>
 </div>
-<div class="listingblock">
-<div class="title">Example for a Tuble Responde</div>
+<div class="sect2 data-line-593">
+<h3 id="_response_tuple">4.3. Response Tuple</h3>
+<div class="paragraph data-line-594">
+<p>Example for saving Response in a Tuple:</p>
+</div>
+<div class="listingblock data-line-598">
+<div class="title">Example for a Tuple Response</div>
 <div class="content">
 <pre class="highlight"><code class="language-Java" data-lang="Java">    private static void secondQuery(EntityManager em) {
         TypedQuery&lt;Tuple&gt; query = em.createQuery("select o.id, p.firstName || ' ' || p.lastName, a.country
@@ -1061,9 +1162,9 @@ private Address address;</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_named_query">3.4. Named Query</h3>
-<div class="listingblock">
+<div class="sect2 data-line-612">
+<h3 id="_named_query">4.4. Named Query</h3>
+<div class="listingblock data-line-616">
 <div class="title">Example for NamedQueries</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    @Entity
@@ -1079,7 +1180,7 @@ private Address address;</code></pre>
     })</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-632">
 <div class="title">Example for a Rest using a NamedQuery</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    @GET
@@ -1092,17 +1193,13 @@ private Address address;</code></pre>
     }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Good Sources:<br>
-<a href="https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm" class="bare">https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm</a></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_enitiy_manager">3.5. Enitiy Manager</h3>
-<div class="paragraph">
+<div class="sect2 data-line-643">
+<h3 id="_entity_manager">4.5. Entity Manager</h3>
+<div class="paragraph data-line-645">
 <p>Example for creating a Entity Manager</p>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-649">
 <div class="title">Eample for Creating a EntityManager</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    EntityManagerFactory emf = Persistence.createEntityManagerFactory("my−persistence−unit");
@@ -1115,44 +1212,48 @@ private Address address;</code></pre>
     em.close();</code></pre>
 </div>
 </div>
+<div class="paragraph data-line-661">
+<p>Good Sources:<br>
+<a href="https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm" class="bare">https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm</a></p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_crud">4. CRUD</h2>
+</div>
+<div class="sect1 data-line-664">
+<h2 id="_crud">5. CRUD</h2>
 <div class="sectionbody">
-<div class="ulist">
+<div class="ulist data-line-665">
 <ul>
-<li>
+<li class="data-line-665">
 <p>Create: persist entity</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-668">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    em.persist(person);</code></pre>
 </div>
 </div>
-<div class="ulist">
+<div class="ulist data-line-671">
 <ul>
-<li>
+<li class="data-line-671">
 <p>Read: find entity by id</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-674">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    Person person = em.find(Person.class, "1234010190");</code></pre>
 </div>
 </div>
-<div class="ulist">
+<div class="ulist data-line-677">
 <ul>
-<li>
+<li class="data-line-677">
 <p>Update: update entity fields</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-680">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    Person person = em.find(Person.class, "1234010190");
     person.setName("Jane Doe");
@@ -1162,14 +1263,14 @@ private Address address;</code></pre>
     // executes update for the name of the person</code></pre>
 </div>
 </div>
-<div class="ulist">
+<div class="ulist data-line-688">
 <ul>
-<li>
+<li class="data-line-688">
 <p>Delete: remove entity</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-691">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    Person person = em.find(Person.class, "1234010190");
     em.remove(person);
@@ -1180,48 +1281,48 @@ private Address address;</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_rest">5. REST</h2>
+<div class="sect1 data-line-700">
+<h2 id="_rest">6. REST</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_http_methods">5.1. Http Methods</h3>
-<div class="ulist">
+<div class="sect2 data-line-702">
+<h3 id="_http_methods">6.1. HTTP Methods</h3>
+<div class="ulist data-line-704">
 <ul>
-<li>
+<li class="data-line-704">
 <p>Get (Read: all or a specific resource)</p>
 </li>
-<li>
+<li class="data-line-705">
 <p>Post (Create or Update: without a specific ID)</p>
 </li>
-<li>
+<li class="data-line-706">
 <p>HEAD</p>
 </li>
-<li>
+<li class="data-line-707">
 <p>PUT (Create or Update: with a specific ID)</p>
 </li>
-<li>
+<li class="data-line-708">
 <p>DELETE (delete a specific resource)</p>
 </li>
-<li>
+<li class="data-line-709">
 <p>TRACE</p>
 </li>
-<li>
+<li class="data-line-710">
 <p>OPTIONS</p>
 </li>
-<li>
+<li class="data-line-711">
 <p>CONNECT</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
+<div class="paragraph data-line-713">
 <p>Good Source:<br>
 <a href="https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden" class="bare">https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden</a></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_examples_a_restendpoint">5.2. Examples a RestEndpoint</h3>
-<div class="listingblock">
-<div class="title">Common Inports for a RestEndpoint</div>
+<div class="sect2 data-line-716">
+<h3 id="_examples_a_restendpoint">6.2. Examples a RestEndpoint</h3>
+<div class="listingblock data-line-720">
+<div class="title">Common Imports for a RestEndpoint</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    import javax.annotation.PostConstruct;
     import javax.json.*;
@@ -1235,7 +1336,7 @@ private Address address;</code></pre>
     import java.util.List;</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock data-line-735">
 <div class="title">Example for a Endpoint</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    @Path("person")
@@ -1256,7 +1357,10 @@ private Address address;</code></pre>
         }</code></pre>
 </div>
 </div>
-<div class="listingblock">
+</div>
+<div class="sect2 data-line-754">
+<h3 id="_post">6.3. POST</h3>
+<div class="listingblock data-line-758">
 <div class="title">Example for a Post</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    @POST
@@ -1281,10 +1385,10 @@ private Address address;</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_examples_for_a_restclient">5.3. Examples for a RestClient</h3>
-<div class="listingblock">
-<div class="title">Exmaple for a get in a Java SE client</div>
+<div class="sect2 data-line-780">
+<h3 id="_examples_for_a_restclient">6.4. Examples for a RestClient</h3>
+<div class="listingblock data-line-784">
+<div class="title">Example for a get in a Java SE client</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">    //import javax.ws.rs.* //core or client;
 
@@ -1296,66 +1400,66 @@ private Address address;</code></pre>
     System.out.println("Request: " + payload);</code></pre>
 </div>
 </div>
+<div class="listingblock data-line-797">
+<div class="title">Example Returning a URI in the Request</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">    public Response foo(@Context UriInfo uri){
+        URI uri = info.getAbsolutePathBuilder().path("/"
+            newCourseType.getId()).build();
+        return Response.created(uri).build();
+    }</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_technologies">6. Technologies</h2>
+</div>
+</div>
+<div class="sect1 data-line-805">
+<h2 id="_technologies">7. Technologies</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_jakarta_ee">6.1. Jakarta EE</h3>
-<div class="paragraph">
+<div class="sect2 data-line-807">
+<h3 id="_jakarta_ee">7.1. Jakarta EE</h3>
+<div class="paragraph data-line-808">
 <p>Good Source:<br>
 <a href="https://eclipse-ee4j.github.io/jakartaee-tutorial/" class="bare">https://eclipse-ee4j.github.io/jakartaee-tutorial/</a></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_junit">6.2. Junit</h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Method Anotations</caption>
+<div class="sect2 data-line-811">
+<h3 id="_junit_4">7.2. JUnit 4</h3>
+<table class="tableblock frame-all grid-all stretch data-line-814">
+<caption class="title">Table 3. <strong>Method Annotations</strong></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Tag</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>@Test</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Turns a public method into a JUnit test case.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>@Before</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Before</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Method to run before every test case</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>@After</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@After</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Method to run after every test case</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>@BeforeClass</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Method to run once, before any test cases haverun</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@BeforeClass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Method to run once, before any test cases have run</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>@AfterClass</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@AfterClass</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Method to run once, after all test cases have run</p></td>
 </tr>
 </tbody>
 </table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Assert Methods</caption>
+<table class="tableblock frame-all grid-all stretch data-line-824">
+<caption class="title">Table 4. <strong>Assert Methods</strong></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1366,76 +1470,179 @@ private Address address;</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertTrue(test)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertTrue(test)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fails if the Boolean test is false</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertFalse(test)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertFalse(test)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fails if the Boolean test is true</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertEquals(expected, actual)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertEquals(expected, actual)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fails if the values are not equal</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertSame(expected, actual)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fails if the values are not the same (by ==)haverun</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertSame(expected, actual)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fails if the values are not the same (by ==) have run</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertNotSame(expected, actual)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertNotSame(expected, actual)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fails if the values are the same (by ==)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertNull(value)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fails if the given value is notnull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertNull(value)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fails if the given value is not null</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertNotNull(value)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertNotNull(value)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fails if the given value is null</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fail()</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fail()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">causes current test to immediately fail</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>assertEquals(“message”, expected, actual)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assertEquals(“message”, expected, actual)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Each method can also be passed a string to display if it fails</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
+<div class="paragraph data-line-837">
 <p>Good Source:<br>
-<a href="https://www.javatpoint.com/" class="bare">https://www.javatpoint.com/</a><br>
-== AsciiDoc</p>
-</div>
-<div class="paragraph">
-<p>Great</p>
+<a href="https://www.javatpoint.com/" class="bare">https://www.javatpoint.com/</a></p>
 </div>
 </div>
 </div>
 </div>
+<div class="sect1 data-line-840">
+<h2 id="_asciidoc">8. AsciiDoc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-842">
+<p>Great Source:<br>
+<a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/" class="bare">https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/</a></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-845">
+<h2 id="_linux">9. Linux</h2>
+<div class="sectionbody">
+<div class="sect2 data-line-847">
+<h3 id="_terminal">9.1. Terminal</h3>
+<table class="tableblock frame-all grid-all stretch data-line-849">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Command</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all files and folders</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chmod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change mode of a file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change user rights on a folder</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-857">
+<h2 id="_hints">10. Hints</h2>
+<div class="sectionbody">
+<div class="sect2 data-line-859">
+<h3 id="_convert_string_to_localdate">10.1. Convert String to LocalDate</h3>
+<div class="listingblock data-line-863">
+<div class="title"><strong>Example Problem</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-JAVA" data-lang="JAVA">DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yy");
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --&gt; 2088-07-03</code></pre>
+</div>
+</div>
+<div class="paragraph data-line-872">
+<p>When converting a String with a two-digit-year to a LocalDate variable, the base of the convertion is 2000 so you get 2088 as result.</p>
+</div>
+<div class="listingblock data-line-876">
+<div class="title"><strong>Example Solution</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">To prevent this, you can subtract 100 years in the DateTimeFormatter-Object
+
+DateTimeFormatter dtf = new DateTimeFormatterBuilder()
+        .appendPattern("dd-MM-")
+        .appendValueReduced(ChronoField.YEAR, 2, 2, 1900)
+        .toFormatter();
+
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --&gt; 1988-07-03</code></pre>
+</div>
+</div>
+<div class="paragraph data-line-890">
+<p>Now the correct date is displayed</p>
+</div>
+<div class="paragraph data-line-892">
+<p>Source:</p>
+</div>
+<div class="ulist data-line-894">
+<ul>
+<li class="data-line-894">
+<p><a href="https://stackoverflow.com/a/38354449" class="bare">https://stackoverflow.com/a/38354449</a></p>
+</li>
+<li class="data-line-895">
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html" class="bare">https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_docker" class="sect0 data-line-897">Docker</h1>
+<div class="paragraph data-line-898">
+<p>Docker is a toll that gives you the opportunity to run applications in a small virtualization environment like a container. Docker is a major part for Microsrvices.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch data-line-902">
+<caption class="title">Table 5. Table useful commands</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker ps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list running containers</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker inspect [container name]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all information&#8217;s about the container</p></td>
+</tr>
+</tfoot>
+</table>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-01-06 12:56:31 +0100
+Last updated 2020-03-07 18:09:33 +0100
 </div>
 </div>
 </body>
