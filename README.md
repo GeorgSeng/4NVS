@@ -40,5 +40,5 @@ https://github.com/htl-leonding/1920-4bhif-nvs
 #### Quarkus
 https://code.quarkus.io/
 
-#### Docker
+#### Docker & Jenkins
 https://htl-leonding-college.github.io/docker-lecture-notes/docker.html
