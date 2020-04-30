@@ -3,19 +3,20 @@ package at.htl.cooldroid.screens.game
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import timber.log.Timber
 
 class GameViewModel : ViewModel() {
 
-    private val _score = MutableLiveData<Int>()
-    val score: LiveData<Int>
-        get() = _score
+    private val _counter = MutableLiveData<Int>()
+    val counter: LiveData<Int>
+        get() = _counter
 
     init {
-        _score.value = 0
+        _counter.value = 0
     }
 
     fun addNewClick() {
-        _score.value = _score.value?.plus(1)
-        //Timber.i("Log ${_score.value}")
+        _counter.value = _counter.value?.plus(1)
+        Timber.i("Log ${_counter.value}")
     }
 }

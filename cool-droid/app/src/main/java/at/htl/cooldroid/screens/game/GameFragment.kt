@@ -22,17 +22,22 @@ class GameFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         Timber.i("OnCreateView")
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.game_fragment, container, false)
+            inflater,
+            R.layout.game_fragment,
+            container,
+            false
+        )
         binding.lifecycleOwner = this;
 
-        binding.ivCoolDroid.setOnClickListener {
+/*        binding.ivCoolDroid.setOnClickListener {
             viewModel.addNewClick()
-        }
+        }*/
 
         return binding.root
     }
@@ -41,5 +46,6 @@ class GameFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         Timber.i("OnActivityCreated")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        binding.gameViewModel = viewModel
     }
 }
