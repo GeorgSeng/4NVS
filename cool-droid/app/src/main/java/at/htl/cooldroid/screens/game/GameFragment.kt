@@ -1,13 +1,15 @@
 package at.htl.cooldroid.screens.game
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import at.htl.cooldroid.R
+import at.htl.cooldroid.databinding.GameFragmentBinding
+import timber.log.Timber
 
 class GameFragment : Fragment() {
 
@@ -16,18 +18,28 @@ class GameFragment : Fragment() {
     }
 
     private lateinit var viewModel: GameViewModel
+    private lateinit var binding: GameFragmentBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.game_fragment, container, false)
+        Timber.i("OnCreateView")
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.game_fragment, container, false)
+        binding.lifecycleOwner = this;
+
+        binding.ivCoolDroid.setOnClickListener {
+            viewModel.addNewClick()
+        }
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
-        // TODO: Use the ViewModel
+        Timber.i("OnActivityCreated")
+        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
     }
-
 }
