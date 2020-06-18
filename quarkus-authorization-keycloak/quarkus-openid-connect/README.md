@@ -1,5 +1,7 @@
 # quarkus-openid-connect project
 
+https://htl-leonding-college.github.io/quarkus-security-lecture-notes/
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .

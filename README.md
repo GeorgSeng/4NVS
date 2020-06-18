@@ -18,6 +18,7 @@
 | getting-started | Hello World Quarkus | 27-Jan-2020 | X |  | Quarkus |
 | demo-websocket | Chat using Docker | 26-Feb-2020 | | | Quarkus |
 | demo-docker | Hello Wolrd Docker | 27-Feb-2020 | X | | | Quarkus |
+| quarkus-authorization-keycloak | Keycloak getting started| 18-June-2020 | X | | | Quarkus, Keycloak |
 
 ### Documents
 
