@@ -1,0 +1,15 @@
+= Quarkus
+
+== Create a project
+
+Needed for a basic setup:
+* Web:
+** RESTEasy Jackson
+** REST Client Jackson
+** SmallRye OpenAPI
+* Data:
+** Hibernate ORM
+** Hibernate ORM with Panache
+* Serialization:
+** RESTEasy Jackson
+** REST Client Jackson

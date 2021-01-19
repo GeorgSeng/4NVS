@@ -166,7 +166,7 @@ demoTest101/db$ /opt/db-derby-10.14.2.0-bin/bin/startNetworkServer -noSecurityMa
 
 | Database | db
 
-| URL | jdbc:derby://localhost:1527/db
+| URL | jdbc:derby://localhost:1527/db;create=true
 
 |===
 
@@ -904,3 +904,4 @@ Docker is a toll that gives you the opportunity to run applications in a small v
 | docker ps | list running containers   
 | docker inspect [container name] | list all information's about the container
 |=======================
+
