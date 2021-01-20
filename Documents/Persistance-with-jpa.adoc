@@ -1,0 +1,357 @@
+== JPA
+
+// Settings
+:source-highlighter: coderay
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:pdfwidth: pdfwidth=80vw
+// Refs:
+:imagesdir: /home/georg/Documents/Data/repos/4NVS/Documents/images
+//:imagesdir: images
+//:sourcedir-code: src/main/java/at/htl/jdbcprimer
+//:sourcedir-test: src/test/java/at/htl/jdbcprimer
+
+
+JPA is a concept that can be implemented like a interface, the current reference implementation is EclipseLink.
+
+The majority of imports is located in the fallowing package:
+*Source Package: import javax.persistence.**;
+
+.*Common JPA Annotations*
+|===
+|Annotation | Description
+
+| @Entity | makes a class a entity
+
+| @Entity(name = "Person") | defines the table name of the entity
+
+| @Id | defines the Pk of a table entity
+
+| @GeneratedValue(strategy = GenerationType.IDENTITY) 
+| defines a auto generated key
+
+a|
+image::Column_options.png[]
+| options for fields / columns
+
+| @Transient
+| defines fields that should not be part of the entity
+
+| @Enumerated(EnumType.STRING)
+  private EmploymentType empType;
+| defines what kind of datatype of a enum get stored in the db (by default int)
+
+|===
+
+.*JPA Relationship Annotations* 
+|===
+|Annotation | Description
+
+a|
+[source, Java]
+----
+/*  Bestellung */
+@OneToMany(mappedBy="bestellung", 
+cascade = CascadeType.Persist, orphanRemoval=true)
+private List<Bestellungsposition> bestellungspositionListe;
+----
+| delete dependent children, when the parent is going to be 
+deleted (child-entities are orphans (=Waisen) then)
+
+
+a|
+[source, Java]
+----
+/*  Bestelposition */
+@ManyToOne
+@JoinColumn(name = "bestellung_id")
+private Bestellung bestellung;
+----
+| the inverse part of the relationship
+
+a|
+[source, Java]
+----
+/*  Person */
+@ManyToOne()
+@JoinColumns({
+    @JoinColumn(name = "Address_No"),
+    @JoinColumn(name = "ssn")
+})
+private Address address;
+
+/* Address */
+@OneToMany(mappedBy = "id.person", cascade = CascadeType.PERSIST)
+private List<Address> addresses = new ArrayList<>();
+----
+| when address has a composition key
+
+a|
+[source, Java]
+----
+
+/*  Person */
+@OneToOne
+@JoinColumn(unique = true)
+private Address address;
+----
+| defines a OneToOne relationship and adds a Fk to the Address in the Person
+
+a|
+[source, Java]
+----
+@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+private Address address;
+----
+| the Address would get added the same moment as the parent object and removed
+
+|===
+
+//
+=== ManyToMany Relationship
+
+There are two ways to make a many to many relationship in JPA. You can decide between a auto generate association table or you can make one yourself. The auto generated on has a down side due to a leg of customizability so if you want to ahv custom fields you have to create a new @Entity class and a new @Embaddable class for the Id.
+
+//
+==== Auto Generated Table
+
+.Example Auto Generated Association Table
+[source, Java]
+----
+    @Entity
+    class Student {
+    
+        @Id
+        Long id;
+    
+        @ManyToMany
+        @JoinTable(
+            name = "course_like", 
+            joinColumns = @JoinColumn(name = "student_id"), 
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+        Set<Course> likedCourses;
+    }
+    
+    @Entity
+    class Course {
+    
+        @Id
+        Long id;
+    
+        @ManyToMany(mappedBy = "likedCourses")
+        Set<Student> likes;
+    }
+----
+
+The new association is in this case owned by the student.
+
+==== Composite Key
+
+.Example Composite Key
+[source, Java]
+----
+    @Embeddable
+    class CourseRatingKey implements Serializable {
+    
+        @Column(name = "student_id")
+        Long studentId;
+    
+        @Column(name = "course_id")
+        Long courseId;
+    
+        // standard constructors, getters, and setters
+        // hashcode and equals implementation
+    }
+----
+
+.Example Using a Composite Key
+[source, Java]
+----
+    @Entity
+    class CourseRating {
+    
+        @EmbeddedId             //Could be a normal @Id
+        CourseRatingKey id;     //Long id;
+    
+        @ManyToOne
+        @MapsId("student_id")   //This would then bin unnecessary
+        @JoinColumn(name = "student_id")
+        Student student;
+    
+        @ManyToOne
+        @MapsId("course_id")    //This would then bin unnecessary
+        @JoinColumn(name = "course_id")
+        Course course;
+    
+        int rating;
+    }
+
+    class Student {
+        @OneToMany(mappedBy = "student")
+        Set<CourseRating> ratings;
+    }
+    
+    class Course {
+        @OneToMany(mappedBy = "course")
+        Set<CourseRating> ratings;
+    }
+----
+
+=== Sequence as Key
+.Example Sequence as Primary Key
+[source, JAVA]
+----
+    @Entity
+    @Table(name = "XY_MY_OBJECT")
+    @SequenceGenerator(name="xy_my_object_seq", initialValue=500, allocationSize=1)
+    public class MyObject {
+
+        @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="xy_my_object_seq")
+        @Id Long id;
+    }
+----
+
+== JPQL
+Java Persistance Query Language
+
+=== CreateQuery
+
+.Example for More Advanced Example
+[source, java]
+----
+    public void getStuff(){
+        System.out.println("\n JPA_1 | Query2:");
+        Query query2 = em.createQuery(
+                "SELECT NEW demo.AwesomePeopleDetail(p.isAwesome, count(p.SSN)) from Person p group by p.isAwesome");
+        List<AwesomePeopleDetail> result2 = query2.getResultList();
+        for (AwesomePeopleDetail apc : result2) {
+            System.out.println(apc.isAwesome() + ": " + apc.getCount());
+        }
+    }
+----
+
+=== Response Object
+
+.Example for Query Response Class
+[source, java]
+----
+    public class AwesomePeopleDetail {
+
+        private boolean isAwesome;
+        private long count;
+
+        public AwesomePeopleDetail(boolean isAwesome, long count) {
+            this.isAwesome = isAwesome;
+            this.count = count;
+        }
+        //region Properties
+        ...
+        //endregion
+    }
+----
+
+=== Response Tuple
+Example for saving Response in a Tuple:
+
+.Example for a Tuple Response
+[source, Java]
+----
+    private static void secondQuery(EntityManager em) {
+        TypedQuery<Tuple> query = em.createQuery("select o.id, p.firstName || ' ' || p.lastName, a.country 
+            || ' ' || a.city || ' ' || a.street || ' ' || a.streetNo as name, 
+            sum(oi.amount * p2.price) as totalCost, sum(oi.amount) as pieces " +
+                "from Person p join p.addresses a join Order o on o.customer = p join o.orderItems oi " +
+                "join oi.id.product p2 where a.id.addressNo = o.shipmentAddress.id.addressNo group by o, p, a", Tuple.class);
+        Tuple result = query.getResultList().get(0);
+        var shipment = new OrderShipment((int) result.get(0), (String) result.get(1), (String) result.get(2), 
+            (BigDecimal) result.get(3), Math.toIntExact((long) result.get(4)));
+        printShipmentInfo(shipment);
+    }
+----
+
+=== Named Query
+
+.Example for NamedQueries
+[source, java]
+----
+    @Entity
+    @NamedQueries({
+            @NamedQuery(
+                    name = "Person.findAll",
+                    query = "select p from Person p"
+            ),
+            @NamedQuery(
+                    name = "Person.findByName",
+                    query = "select p from Person p where p.name = :NAME"
+            )
+    })
+----
+
+.Example for a Rest using a NamedQuery
+[source, java]
+----
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Person findByName(@QueryParam("name") String name) {
+        return em
+        .createNamedQuery("Person.findByName",Person.class)
+        .setParameter("NAME", name)
+        .getSingleResult();
+    }
+----
+
+=== Entity Manager
+
+Example for creating a Entity Manager
+
+.Eample for Creating a EntityManager
+[source, java]
+----
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("my−persistence−unit");
+    EntityManager em = emf.createEntityManager();
+
+    em.getTransaction().begin();
+    // perform insert/update/delete/query
+    em.getTransaction().commit(); 
+    // or em.getTransaction().rollback();
+    em.close();
+----
+
+
+Good Sources:
+https://www.tutorialspoint.com/de/jpa/jpa_jpql.htm
+
+== CRUD
+* Create: persist entity
+
+[source, java]
+----
+    em.persist(person);
+----
+* Read: find entity by id
+
+[source, java]
+----
+    Person person = em.find(Person.class, "1234010190");
+----
+* Update: update entity fields
+
+[source, java]
+----
+    Person person = em.find(Person.class, "1234010190");
+    person.setName("Jane Doe");
+    // optional: other operations
+    em.merge();
+    //em.getTransaction().commit(); 
+    // executes update for the name of the person
+----
+* Delete: remove entity
+
+[source, java]
+----
+    Person person = em.find(Person.class, "1234010190");
+    em.remove(person);
+    // optional: other operations
+    em.getTransaction().commit(); 
+    // executes delete for the person
+----

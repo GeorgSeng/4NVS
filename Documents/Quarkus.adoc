@@ -1,8 +1,21 @@
-= Quarkus
+== Quarkus
 
-== Create a project
+// Settings
+:source-highlighter: coderay
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:pdfwidth: pdfwidth=80vw
+// Refs:
+:imagesdir: /home/georg/Documents/Data/repos/4NVS/Documents/images
+//:imagesdir: images
+//:sourcedir-code: src/main/java/at/htl/jdbcprimer
+//:sourcedir-test: src/test/java/at/htl/jdbcprimer
+
+
+=== Create a project
 
 Needed for a basic setup:
+
 * Web:
 ** RESTEasy Jackson
 ** REST Client Jackson
@@ -13,3 +26,29 @@ Needed for a basic setup:
 * Serialization:
 ** RESTEasy Jackson
 ** REST Client Jackson
+
+link:https://code.quarkus.io/[Q: Getting Started]
+
+=== Start Quarkus 
+
+--
+./mvnw quarkus:dev clean 
+--
+
+=== Persistance
+
+* link:https://quarkus.io/guides/datasource[Quarkus - Datasources]
+* link:https://quarkus.io/guides/hibernate-orm-panache[Quarkus - Simplified Hibernate ORM with Panache]
+
+=== Rest
+
+* link:https://quarkus.io/guides/rest-json[Quarkus - Writing JSON REST Services]
+ 
+
+=== Quarkus Cheat-Sheet
+
+link:https://lordofthejars.github.io/quarkus-cheat-sheet/[Home of Quarkus Cheat-Sheet]
+
+=== Read CSV File
+
+link:https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/[How to access a file in the resources-Folder (JakartaEE)]

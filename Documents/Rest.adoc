@@ -1,0 +1,116 @@
+== REST
+
+// Settings
+:source-highlighter: coderay
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:pdfwidth: pdfwidth=80vw
+// Refs:
+:imagesdir: /home/georg/Documents/Data/repos/4NVS/Documents/images
+//:imagesdir: images
+//:sourcedir-code: src/main/java/at/htl/jdbcprimer
+//:sourcedir-test: src/test/java/at/htl/jdbcprimer
+
+
+=== HTTP Methods
+
+* Get (Read: all or a specific resource)
+* Post (Create or Update: without a specific ID)
+* HEAD
+* PUT (Create or Update: with a specific ID)
+* DELETE (delete a specific resource)
+* TRACE
+* OPTIONS
+* CONNECT
+
+Good Source:
+https://wiki.selfhtml.org/wiki/HTTP/Anfragemethoden
+
+=== Examples a RestEndpoint
+
+.Common Imports for a RestEndpoint
+[source, java]
+----
+    import javax.annotation.PostConstruct;
+    import javax.json.*;
+    import javax.persistence.*;
+    import javax.transaction.Transactional;
+    import javax.ws.rs.*;
+    import javax.ws.rs.core.*;
+    import java.net.URI;
+    import java.time.LocalDate;
+    import java.time.format.DateTimeFormatter;
+    import java.util.List;
+----
+
+.Example for a Endpoint
+[source, java]
+----
+    @Path("person")
+    public class PersonEndpoint {
+
+        public PersonEndpoint() {
+        }
+
+        @PersistenceContext
+        EntityManager em;
+
+        @GET
+        @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XM})
+        public List<Person> findAll() {
+            return em
+                    .createNamedQuery("Person.findAll", Person.class)
+                    .getResultList();
+        }
+----
+
+=== POST
+
+.Example for a Post
+[source, java]
+----
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response createPerson(
+            final @Context UriInfo uriInfo,
+            JsonValue jsonValue) {
+
+        if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
+            JsonArray jsonArray = jsonValue.asJsonArray();
+            for (JsonValue value : jsonArray) {
+                String name = value.asJsonObject().getString("name");
+                ...
+                p = em.merge(p);
+            }
+        } else {
+            System.out.println("Ich bin ein Object");
+        }
+        return Response.ok().build();
+    }
+----
+
+=== Examples for a RestClient
+
+.Example for a get in a Java SE client
+[source, java]
+----
+    //import javax.ws.rs.* //core or client;
+
+    Client client = ClientBuilder.newClient();
+    WebTarget tut = client.target("http://localhost:8080/restprimer/api/time");
+
+    Response response = tut.request(MediaType.TEXT_PLAIN).get();
+    String payload = response.readEntity(String.class);
+    System.out.println("Request: " + payload);
+----
+
+.Example Returning a URI in the Request
+[source, java]
+----
+    public Response foo(@Context UriInfo uri){
+        URI uri = info.getAbsolutePathBuilder().path("/" 
+            newCourseType.getId()).build();
+        return Response.created(uri).build();
+    } 
+----
