@@ -1,0 +1,39 @@
+== Hints
+
+=== Convert String to LocalDate
+
+.*Example Problem*
+[source, JAVA]
+----
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yy");
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --> 2088-07-03
+----
+
+When converting a String with a two-digit-year to a LocalDate variable, the base of the convertion is 2000 so you get 2088 as result.
+
+.*Example Solution*
+[source, java]
+----
+To prevent this, you can subtract 100 years in the DateTimeFormatter-Object
+
+DateTimeFormatter dtf = new DateTimeFormatterBuilder()
+        .appendPattern("dd-MM-")
+        .appendValueReduced(ChronoField.YEAR, 2, 2, 1900)
+        .toFormatter();
+
+String dateString = "03-07-88"; // 3rd of July 1988
+
+LocalDate date = LocalDate.parse(dateString, dtf);
+
+System.out.println(date); // --> 1988-07-03
+----
+Now the correct date is displayed
+
+Source:
+
+- https://stackoverflow.com/a/38354449
+- https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html

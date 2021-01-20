@@ -1,0 +1,35 @@
+= Script: NVS 4
+:toc:
+
+
+// Metadata
+:author: GeorgSeng
+:date: 2021-01-20
+:revision:  1.6
+
+// Settings
+:source-highlighter: coderay
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:pdfwidth: pdfwidth=80vw
+// Refs:
+:imagesdir: /home/georg/Documents/Data/repos/4NVS/Documents/images
+//:imagesdir: images
+//:sourcedir-code: src/main/java/at/htl/jdbcprimer
+//:sourcedir-test: src/test/java/at/htl/jdbcprimer
+
+ 
+Version: {revision}
+
+// Includes
+
+include::General.adoc[]
+
+include::Quarkus.adoc[]
+
+include::Hints.adoc[]
+
+include::Persistance-with-jpa.adoc[]
+
+include::Rest.adoc[]
+

@@ -40,15 +40,17 @@ link:https://code.quarkus.io/[Q: Getting Started]
 * link:https://quarkus.io/guides/datasource[Quarkus - Datasources]
 * link:https://quarkus.io/guides/hibernate-orm-panache[Quarkus - Simplified Hibernate ORM with Panache]
 
-=== Rest
+=== Networking
 
 * link:https://quarkus.io/guides/rest-json[Quarkus - Writing JSON REST Services]
- 
+* link:https://quarkus.io/guides/openapi-swaggerui[Quarkus - Using OpenAPI and Swagger UI]
+* link:https://quarkus.io/guides/websockets[Quarkus - Using WebSockets]
 
 === Quarkus Cheat-Sheet
 
-link:https://lordofthejars.github.io/quarkus-cheat-sheet/[Home of Quarkus Cheat-Sheet]
+* link:https://lordofthejars.github.io/quarkus-cheat-sheet/[Home of Quarkus Cheat-Sheet]
 
 === Read CSV File
 
-link:https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/[How to access a file in the resources-Folder (JakartaEE)]
+* link:https://stuetzpunkt.wordpress.com/2016/12/28/how-to-access-file-in-resources-folder-javaee/[How to access a file in the resources-Folder (JakartaEE)]
+
